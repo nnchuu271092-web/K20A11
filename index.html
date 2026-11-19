@@ -1,1690 +1,2818 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>K20A11 – Hành trình tri thức, kết nối tình thân</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-  <script>
-    if (window.pdfjsLib) {
-      pdfjsLib.GlobalWorkerOptions.workerSrc =
-        "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
-    }
-  </script>
-  <style>
-    :root {
-      --primary: #991b1b;
-      --primary-dark: #7f1d1d;
-      --accent: #b45309;
-      --bg-soft: #fffaf5;
-    }
-    body {
-      font-family: "Segoe UI", Roboto, Arial, sans-serif;
-      background: linear-gradient(180deg, #fff8f1 0%, #f8fafc 45%, #fff8f1 100%);
-      color: #1e293b;
-      min-height: 100vh;
-    }
-    .script-title {
-      font-family: "Georgia", "Times New Roman", serif;
-      font-style: italic;
-    }
-    .glass-card {
-      background: rgba(255, 255, 255, 0.94);
-      backdrop-filter: blur(8px);
-      border: 1px solid #e2e8f0;
-      box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.06);
-    }
-    .toast-banner {
-      position: fixed;
-      top: 18px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 9999;
-      max-width: 92vw;
-      background: #0f172a;
-      color: #f8fafc;
-      padding: 12px 20px;
-      border-radius: 14px;
-      border: 1px solid #f59e0b;
-      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.25);
-      font-size: 0.92rem;
-      font-weight: 500;
-      display: none;
-    }
-    @keyframes floatLotus {
-      0%, 100% { transform: translateY(0px) rotate(0deg); }
-      50% { transform: translateY(-6px) rotate(2deg); }
-    }
-    .lotus-float {
-      animation: floatLotus 3.6s ease-in-out infinite;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cổng thông tin lớp K20A11 – Cao cấp lý luận chính trị</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="https://cdn.jsdelivr.net/npm/mammoth@1.6.0/mammoth.browser.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script>
+if (window.pdfjsLib) {
+  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+}
+</script>
+<style>
+:root {
+  --crimson: #8f1d24;
+  --crimson-dark: #681117;
+  --crimson-soft: #fdf4f4;
+  --crimson-border: #e7c6c8;
+  --gold: #c99a3a;
+  --gold-light: #f6e7be;
+  --gold-soft: #fffaf0;
+  --ivory: #fbf8f3;
+  --paper: #ffffff;
+  --ink: #1f1a19;
+  --ink-2: #4b423f;
+  --muted: #756965;
+  --line: #e9e1d6;
+  --line-2: #d8ccb9;
+  --ok: #1b6b47;
+  --ok-bg: #eefaf3;
+  --warn: #9a5b13;
+  --warn-bg: #fff6e8;
+  --err: #a81c24;
+  --err-bg: #fdeeee;
+  --radius-xl: 22px;
+  --radius-lg: 16px;
+  --radius-md: 12px;
+  --radius-sm: 9px;
+  --shadow-sm: 0 2px 10px rgba(45, 18, 18, 0.04);
+  --shadow-md: 0 10px 28px rgba(45, 18, 18, 0.08);
+  --shadow-lg: 0 20px 46px rgba(35, 12, 12, 0.16);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--ivory);
+  color: var(--ink);
+  line-height: 1.58;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+button, input, select, textarea {
+  font-family: inherit;
+  color: inherit;
+}
+
+button { cursor: pointer; }
+img { max-width: 100%; display: block; }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+/* Header & Navigation */
+.topbar-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+}
+
+.topbar {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 10px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  text-decoration: none;
+  color: inherit;
+  min-width: 0;
+}
+
+.brand-badge {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: linear-gradient(145deg, var(--crimson), var(--crimson-dark));
+  color: #fff;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  border: 1px solid rgba(201, 154, 58, 0.45);
+  box-shadow: 0 4px 12px rgba(143, 29, 36, 0.22);
+}
+
+.brand-titles { min-width: 0; }
+.brand-kicker {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--crimson);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.brand-name {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.nav-desktop {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  flex-wrap: wrap;
+}
+
+.nav-btn {
+  border: none;
+  background: transparent;
+  padding: 8px 10px;
+  border-radius: 9px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-2);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: 0.16s ease;
+  white-space: nowrap;
+}
+
+.nav-btn:hover {
+  background: var(--crimson-soft);
+  color: var(--crimson);
+}
+
+.nav-btn.active {
+  background: var(--crimson);
+  color: #fff;
+  box-shadow: 0 3px 10px rgba(143, 29, 36, 0.22);
+}
+
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.sync-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 11.5px;
+  font-weight: 700;
+  border: 1px solid var(--line-2);
+  background: var(--ivory);
+  color: var(--ink-2);
+  white-space: nowrap;
+}
+.sync-dot {
+  width: 8px; height: 8px; border-radius: 50%; background: var(--muted);
+}
+.sync-pill.ok { background: var(--ok-bg); color: var(--ok); border-color: #b7e4ca; }
+.sync-pill.ok .sync-dot { background: var(--ok); }
+.sync-pill.syncing { background: var(--warn-bg); color: var(--warn); border-color: #f3d299; }
+.sync-pill.syncing .sync-dot { background: var(--warn); }
+.sync-pill.err { background: var(--err-bg); color: var(--err); border-color: #f2b8bc; }
+.sync-pill.err .sync-dot { background: var(--err); }
+
+.hamburger {
+  display: none;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  border: 1px solid var(--line-2);
+  background: #fff;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobile-drawer {
+  display: none;
+  padding: 10px 18px 16px;
+  border-top: 1px solid var(--line);
+  background: #fff;
+}
+.mobile-drawer.open { display: block; }
+.mobile-nav-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+/* Main container */
+.container {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 22px 18px 88px;
+}
+
+.view-section { display: none; animation: fadeIn 0.22s ease; }
+.view-section.active { display: block; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Hero Banner */
+.hero {
+  position: relative;
+  border-radius: var(--radius-xl);
+  background: linear-gradient(125deg, #5d0e14 0%, #8f1d24 52%, #a82830 100%);
+  color: #fff;
+  padding: 28px 28px 26px;
+  overflow: hidden;
+  border: 1px solid rgba(246, 231, 190, 0.35);
+  box-shadow: var(--shadow-md);
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  right: -60px;
+  top: -60px;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(246, 231, 190, 0.22) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(246, 231, 190, 0.4);
+  color: var(--gold-light);
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.hero h1 {
+  margin: 0 0 8px;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(24px, 3.4vw, 36px);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.hero p.lead {
+  margin: 0;
+  max-width: 760px;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 14.5px;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 9px 15px;
+  border-radius: var(--radius-sm);
+  font-size: 13.5px;
+  font-weight: 700;
+  border: 1px solid transparent;
+  transition: 0.16s ease;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: var(--crimson);
+  color: #fff;
+  border-color: var(--crimson);
+}
+.btn-primary:hover { background: var(--crimson-dark); }
+
+.btn-gold {
+  background: linear-gradient(135deg, #e5ba58, #c8952e);
+  color: #2b1704;
+  border-color: #f6e7be;
+}
+.btn-gold:hover { filter: brightness(1.04); }
+
+.btn-light {
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.34);
+}
+.btn-light:hover { background: rgba(255, 255, 255, 0.22); }
+
+.btn-outline {
+  background: #fff;
+  color: var(--ink-2);
+  border-color: var(--line-2);
+}
+.btn-outline:hover {
+  border-color: var(--crimson);
+  color: var(--crimson);
+  background: var(--crimson-soft);
+}
+
+.btn-danger-soft {
+  background: var(--err-bg);
+  color: var(--err);
+  border-color: #f3c2c6;
+}
+.btn-danger-soft:hover { background: #fbdada; }
+
+.btn-sm { padding: 6px 11px; font-size: 12.5px; border-radius: 8px; }
+.btn-xs { padding: 4px 8px; font-size: 11.5px; border-radius: 7px; }
+
+/* Stats Grid */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.stat-card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 16px 18px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.stat-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.stat-value {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--crimson);
+  line-height: 1.15;
+  margin-top: 4px;
+}
+
+.stat-sub {
+  font-size: 12px;
+  color: var(--ink-2);
+  margin-top: 3px;
+}
+
+.stat-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--crimson-soft);
+  color: var(--crimson);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+/* Section header & Cards */
+.sec-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.sec-title {
+  margin: 0;
+  font-size: 21px;
+  font-weight: 800;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sec-sub {
+  margin: 4px 0 0;
+  font-size: 13.5px;
+  color: var(--muted);
+}
+
+.card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 18px 20px;
+  box-shadow: var(--shadow-sm);
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+/* Badges & Tags */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-size: 11.5px;
+  font-weight: 700;
+  background: var(--ivory);
+  border: 1px solid var(--line-2);
+  color: var(--ink-2);
+}
+
+.badge-crimson {
+  background: var(--crimson-soft);
+  border-color: var(--crimson-border);
+  color: var(--crimson);
+}
+
+.badge-gold {
+  background: var(--gold-soft);
+  border-color: #ebd091;
+  color: #7c5308;
+}
+
+.badge-ok {
+  background: var(--ok-bg);
+  border-color: #b7e4ca;
+  color: var(--ok);
+}
+
+.badge-warn {
+  background: var(--warn-bg);
+  border-color: #f3d299;
+  color: var(--warn);
+}
+
+/* Toolbar & Controls */
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.toolbar-left, .toolbar-right {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.input, .select, .textarea {
+  width: 100%;
+  padding: 9px 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line-2);
+  background: #fff;
+  font-size: 13.5px;
+  transition: 0.15s ease;
+}
+
+.input:focus, .select:focus, .textarea:focus {
+  outline: none;
+  border-color: var(--crimson);
+  box-shadow: 0 0 0 3px rgba(143, 29, 36, 0.12);
+}
+
+.textarea { min-height: 92px; resize: vertical; }
+
+.search-box {
+  position: relative;
+  min-width: 230px;
+}
+.search-box input { padding-left: 34px; }
+.search-box i, .search-box svg {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--muted);
+  pointer-events: none;
+}
+
+.chip-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.chip {
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--line-2);
+  background: #fff;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--ink-2);
+}
+.chip.active {
+  background: var(--crimson);
+  color: #fff;
+  border-color: var(--crimson);
+}
+
+/* Table */
+.table-wrap {
+  overflow-x: auto;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--line);
+  background: #fff;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+}
+
+th, td {
+  padding: 11px 13px;
+  text-align: left;
+  border-bottom: 1px solid var(--line);
+  vertical-align: middle;
+}
+
+th {
+  background: #faf6f0;
+  font-weight: 700;
+  color: var(--ink-2);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: #fdfaf6; }
+
+/* Member Cards */
+.member-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: var(--shadow-sm);
+  transition: 0.16s ease;
+}
+.member-card:hover {
+  border-color: var(--crimson-border);
+  box-shadow: var(--shadow-md);
+}
+.member-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--crimson), #b8323a);
+  color: #fff;
+  font-weight: 800;
+  font-size: 16px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  border: 2px solid var(--gold-light);
+  overflow: hidden;
+}
+.avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+.member-name {
+  font-weight: 800;
+  font-size: 15px;
+  color: var(--ink);
+  margin: 0;
+}
+.member-role {
+  font-size: 12px;
+  color: var(--crimson);
+  font-weight: 700;
+}
+.member-meta {
+  font-size: 12.5px;
+  color: var(--ink-2);
+  display: grid;
+  gap: 4px;
+}
+.member-meta div {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+/* Gallery */
+.photo-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+}
+.photo-thumb {
+  aspect-ratio: 16 / 10;
+  background: #f2ece3;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+}
+.photo-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.25s ease;
+}
+.photo-card:hover .photo-thumb img { transform: scale(1.03); }
+.photo-body {
+  padding: 13px 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+.photo-title { font-weight: 700; font-size: 14.5px; margin: 0; }
+.photo-cap { font-size: 12.5px; color: var(--ink-2); margin: 0; flex: 1; }
+
+/* AI Assistant */
+.ai-layout {
+  display: grid;
+  grid-template-columns: 320px minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.ai-chat-box {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  min-height: 540px;
+}
+
+.ai-chat-head {
+  padding: 14px 18px;
+  background: linear-gradient(120deg, var(--crimson), var(--crimson-dark));
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.ai-messages {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 460px;
+  overflow-y: auto;
+  background: #fdfbf8;
+  flex: 1;
+}
+
+.msg {
+  max-width: 88%;
+  padding: 12px 15px;
+  border-radius: 14px;
+  font-size: 13.5px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.msg.user {
+  align-self: flex-end;
+  background: var(--crimson);
+  color: #fff;
+  border-bottom-right-radius: 4px;
+}
+.msg.bot {
+  align-self: flex-start;
+  background: #fff;
+  border: 1px solid var(--line-2);
+  color: var(--ink);
+  border-bottom-left-radius: 4px;
+  box-shadow: var(--shadow-sm);
+}
+
+.ai-composer {
+  padding: 12px 14px;
+  border-top: 1px solid var(--line);
+  background: #fff;
+  display: flex;
+  gap: 8px;
+  align-items: flex-end;
+}
+.ai-composer textarea {
+  min-height: 44px;
+  max-height: 130px;
+  flex: 1;
+}
+
+/* Modal */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(24, 10, 10, 0.56);
+  backdrop-filter: blur(3px);
+  z-index: 80;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+.modal-backdrop.open { display: flex; }
+
+.modal {
+  width: 100%;
+  max-width: 680px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: #fff;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--line-2);
+  box-shadow: var(--shadow-lg);
+  animation: fadeIn 0.18s ease;
+}
+
+.modal-head {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  position: sticky;
+  top: 0;
+  background: #fff;
+  z-index: 2;
+}
+.modal-title { margin: 0; font-size: 17px; font-weight: 800; }
+.modal-body { padding: 18px 20px; display: grid; gap: 13px; }
+.modal-foot {
+  padding: 14px 20px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  background: #faf7f2;
+}
+
+.form-row { display: grid; gap: 6px; }
+.form-row label { font-size: 12.5px; font-weight: 700; color: var(--ink-2); }
+.form-grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+
+/* Floating Assistant Button */
+.fab-ai {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 50;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 16px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--crimson), var(--crimson-dark));
+  color: #fff;
+  border: 1.5px solid var(--gold-light);
+  box-shadow: 0 10px 26px rgba(104, 17, 23, 0.35);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+/* Toast */
+.toast-wrap {
+  position: fixed;
+  left: 50%;
+  bottom: 22px;
+  transform: translateX(-50%);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  pointer-events: none;
+}
+.toast {
+  background: #231716;
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  box-shadow: var(--shadow-lg);
+  border-left: 4px solid var(--gold);
+}
+
+.empty-state {
+  text-align: center;
+  padding: 34px 18px;
+  color: var(--muted);
+  border: 1px dashed var(--line-2);
+  border-radius: var(--radius-lg);
+  background: #fff;
+}
+
+@media (max-width: 1024px) {
+  .nav-desktop { display: none; }
+  .hamburger { display: inline-flex; }
+  .stats-grid, .grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ai-layout { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 680px) {
+  .stats-grid, .grid-2, .grid-3, .grid-4, .form-grid-2 { grid-template-columns: 1fr; }
+  .hero { padding: 20px 18px; }
+  .sync-pill span.sync-label { display: none; }
+  .fab-ai span.fab-text { display: none; }
+  .fab-ai { width: 52px; height: 52px; padding: 0; justify-content: center; }
+}
+
+@media print {
+  .topbar-wrap, .fab-ai, .toast-wrap, .no-print { display: none !important; }
+  .view-section { display: block !important; }
+  body { background: #fff; }
+  .card, .stat-card, .table-wrap { box-shadow: none; break-inside: avoid; }
+}
+</style>
 </head>
 <body>
-  <div id="toastBanner" class="toast-banner"></div>
 
-  <!-- Thanh trạng thái hệ thống -->
-  <div class="bg-slate-900 text-white text-xs sm:text-sm py-2 px-3 sm:px-6">
-    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
-      <div class="flex items-center gap-2 font-medium">
-        <span>🏛️ Học viện Chính trị khu vực IV</span>
-        <span class="text-slate-500">|</span>
-        <span>Cao cấp lý luận chính trị K20A11 (2026 - 2027)</span>
+<header class="topbar-wrap no-print">
+  <div class="topbar">
+    <a href="#home" class="brand" data-nav="home">
+      <div class="brand-badge">
+        <i data-lucide="flower-2" size="21"></i>
       </div>
-      <div class="flex items-center gap-2">
-        <span id="syncStatusBadge" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-800 border border-slate-700 text-xs font-semibold text-amber-300">
-          <span id="syncDot" class="w-2 h-2 rounded-full bg-amber-400"></span>
-          <span id="syncStatusText">Đang kết nối Firebase...</span>
-        </span>
-        <button onclick="syncFromFirebase(true)" class="px-3 py-1 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold transition">
-          ↻ Làm mới
-        </button>
+      <div class="brand-titles">
+        <div class="brand-kicker">Học viện Chính trị khu vực IV • Khóa 2026 – 2027</div>
+        <div class="brand-name">Lớp K20A11 – Cao cấp lý luận chính trị</div>
       </div>
+    </a>
+
+    <nav class="nav-desktop" aria-label="Điều hướng chính">
+      <button class="nav-btn active" data-nav="home"><i data-lucide="home" size="14"></i>Trang chủ</button>
+      <button class="nav-btn" data-nav="members"><i data-lucide="users" size="14"></i>Danh sách lớp</button>
+      <button class="nav-btn" data-nav="schedule"><i data-lucide="calendar-days" size="14"></i>Kế hoạch học tập</button>
+      <button class="nav-btn" data-nav="exams"><i data-lucide="clipboard-check" size="14"></i>Lịch thi</button>
+      <button class="nav-btn" data-nav="notices"><i data-lucide="megaphone" size="14"></i>Thông báo</button>
+      <button class="nav-btn" data-nav="docs"><i data-lucide="folder-open" size="14"></i>Tài liệu</button>
+      <button class="nav-btn" data-nav="gallery"><i data-lucide="images" size="14"></i>Ảnh kỷ niệm</button>
+      <button class="nav-btn" data-nav="ai"><i data-lucide="sparkles" size="14"></i>Trợ lý Tiểu Hoa Sen</button>
+      <button class="nav-btn" data-nav="sync"><i data-lucide="cloud" size="14"></i>Đồng bộ</button>
+    </nav>
+
+    <div class="topbar-actions">
+      <div id="syncPill" class="sync-pill" title="Trạng thái đồng bộ dữ liệu lớp">
+        <span class="sync-dot"></span>
+        <span class="sync-label">Chưa đồng bộ</span>
+      </div>
+      <button class="hamburger" id="hamburgerBtn" aria-label="Mở menu điều hướng">
+        <i data-lucide="menu" size="20"></i>
+      </button>
     </div>
   </div>
 
-  <!-- Phần đầu trang -->
-  <header class="bg-white border-b border-amber-200/80 shadow-sm">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4">
-      <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
-        <div class="flex items-center gap-3">
-          <div class="w-12 h-12 rounded-2xl bg-red-800 text-amber-300 flex items-center justify-center font-bold text-xl shadow">
-            ★
+  <div class="mobile-drawer" id="mobileDrawer">
+    <div class="mobile-nav-grid">
+      <button class="nav-btn active" data-nav="home"><i data-lucide="home" size="14"></i>Trang chủ</button>
+      <button class="nav-btn" data-nav="members"><i data-lucide="users" size="14"></i>Danh sách lớp</button>
+      <button class="nav-btn" data-nav="schedule"><i data-lucide="calendar-days" size="14"></i>Kế hoạch học tập</button>
+      <button class="nav-btn" data-nav="exams"><i data-lucide="clipboard-check" size="14"></i>Lịch thi</button>
+      <button class="nav-btn" data-nav="notices"><i data-lucide="megaphone" size="14"></i>Thông báo</button>
+      <button class="nav-btn" data-nav="docs"><i data-lucide="folder-open" size="14"></i>Tài liệu</button>
+      <button class="nav-btn" data-nav="gallery"><i data-lucide="images" size="14"></i>Ảnh kỷ niệm</button>
+      <button class="nav-btn" data-nav="ai"><i data-lucide="sparkles" size="14"></i>Trợ lý Tiểu Hoa Sen</button>
+      <button class="nav-btn" data-nav="sync"><i data-lucide="cloud" size="14"></i>Đồng bộ</button>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <!-- 1. TRANG CHỦ -->
+  <section id="view-home" class="view-section active">
+    <div class="hero">
+      <div class="hero-top">
+        <div>
+          <div class="hero-tag">
+            <i data-lucide="award" size="14"></i>
+            Chương trình Cao cấp lý luận chính trị • Học viện Chính trị khu vực IV
           </div>
+          <h1>Cổng thông tin lớp K20A11</h1>
+          <p class="lead">
+            Không gian kết nối, quản lý danh sách học viên, kế hoạch học tập, lịch thi, thông báo, kho tài liệu, album kỷ niệm và <strong>Trợ lý Tiểu Hoa Sen</strong> hỗ trợ học tập, soạn thảo, giải đề và chấm bài cho tập thể lớp khóa 2026 – 2027.
+          </p>
+        </div>
+        <div class="badge badge-gold" style="padding:8px 13px;font-size:12.5px;">
+          <i data-lucide="calendar" size="14"></i>
+          Niên khóa 2026 – 2027
+        </div>
+      </div>
+
+      <div class="hero-actions no-print">
+        <button class="btn btn-gold" data-nav="ai"><i data-lucide="sparkles" size="15"></i>Mở Trợ lý Tiểu Hoa Sen</button>
+        <button class="btn btn-light" data-nav="schedule"><i data-lucide="calendar-days" size="15"></i>Xem kế hoạch học tập</button>
+        <button class="btn btn-light" data-nav="members"><i data-lucide="users" size="15"></i>Danh sách học viên</button>
+        <button class="btn btn-light" onclick="window.print()"><i data-lucide="printer" size="15"></i>In / Lưu PDF</button>
+      </div>
+    </div>
+
+    <div class="stats-grid" id="homeStats"></div>
+
+    <div class="grid-2" style="margin-top:18px;">
+      <div class="card">
+        <div class="sec-head" style="margin-bottom:12px;">
           <div>
-            <div class="flex items-center gap-2 flex-wrap">
-              <span class="text-2xl sm:text-3xl font-extrabold text-red-800 tracking-tight">K20A11</span>
-              <span class="px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 text-xs font-bold border border-amber-300">
-                Khóa 2026 - 2027
-              </span>
-            </div>
-            <p class="text-xs sm:text-sm font-bold text-blue-900 tracking-wide uppercase">
-              CAO CẤP LÝ LUẬN CHÍNH TRỊ
-            </p>
+            <h2 class="sec-title" style="font-size:17px;"><i data-lucide="megaphone" size="18" color="#8f1d24"></i>Thông báo mới nhất</h2>
+            <p class="sec-sub">Cập nhật nhanh từ Ban cán sự lớp và Học viện</p>
+          </div>
+          <button class="btn btn-outline btn-sm" data-nav="notices">Xem tất cả</button>
+        </div>
+        <div id="homeNotices" style="display:grid;gap:10px;"></div>
+      </div>
+
+      <div class="card">
+        <div class="sec-head" style="margin-bottom:12px;">
+          <div>
+            <h2 class="sec-title" style="font-size:17px;"><i data-lucide="calendar-check" size="18" color="#8f1d24"></i>Lịch học &amp; Lịch thi sắp tới</h2>
+            <p class="sec-sub">Theo dõi mốc thời gian quan trọng của lớp K20A11</p>
+          </div>
+          <button class="btn btn-outline btn-sm" data-nav="exams">Lịch thi</button>
+        </div>
+        <div id="homeUpcoming" style="display:grid;gap:10px;"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. DANH SÁCH LỚP -->
+  <section id="view-members" class="view-section">
+    <div class="sec-head">
+      <div>
+        <h2 class="sec-title"><i data-lucide="users" size="22" color="#8f1d24"></i>Danh sách học viên lớp K20A11</h2>
+        <p class="sec-sub">Quản lý thông tin học viên, chức vụ trong lớp, đơn vị công tác, liên hệ và tìm kiếm nhanh</p>
+      </div>
+      <div class="toolbar-right no-print">
+        <button class="btn btn-outline btn-sm" id="exportMembersCsvBtn"><i data-lucide="download" size="14"></i>Xuất CSV</button>
+        <button class="btn btn-primary btn-sm" id="addMemberBtn"><i data-lucide="user-plus" size="14"></i>Thêm học viên</button>
+      </div>
+    </div>
+
+    <div class="toolbar no-print">
+      <div class="toolbar-left">
+        <div class="search-box">
+          <i data-lucide="search" size="15"></i>
+          <input type="text" id="memberSearch" class="input" placeholder="Tìm tên, chức vụ, đơn vị, SĐT...">
+        </div>
+        <select id="memberRoleFilter" class="select" style="width:auto;min-width:170px;">
+          <option value="ALL">Tất cả vai trò</option>
+          <option value="BCP">Ban cán sự lớp</option>
+          <option value="HV">Học viên</option>
+        </select>
+      </div>
+      <div class="toolbar-right">
+        <div class="chip-group">
+          <button class="chip active" id="viewCardsBtn"><i data-lucide="layout-grid" size="13"></i> Thẻ</button>
+          <button class="chip" id="viewTableBtn"><i data-lucide="table" size="13"></i> Bảng</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="membersContainer"></div>
+  </section>
+
+  <!-- 3. KẾ HOẠCH HỌC TẬP -->
+  <section id="view-schedule" class="view-section">
+    <div class="sec-head">
+      <div>
+        <h2 class="sec-title"><i data-lucide="calendar-days" size="22" color="#8f1d24"></i>Kế hoạch học tập</h2>
+        <p class="sec-sub">Theo dõi các chuyên đề, buổi học, giảng viên, phòng học và trạng thái hoàn thành</p>
+      </div>
+      <div class="toolbar-right no-print">
+        <button class="btn btn-primary btn-sm" id="addScheduleBtn"><i data-lucide="plus" size="14"></i>Thêm buổi học / chuyên đề</button>
+      </div>
+    </div>
+
+    <div class="toolbar no-print">
+      <div class="toolbar-left">
+        <div class="search-box">
+          <i data-lucide="search" size="15"></i>
+          <input type="text" id="scheduleSearch" class="input" placeholder="Tìm chuyên đề, giảng viên, phòng...">
+        </div>
+        <select id="scheduleStatusFilter" class="select" style="width:auto;min-width:165px;">
+          <option value="ALL">Tất cả trạng thái</option>
+          <option value="Sắp diễn ra">Sắp diễn ra</option>
+          <option value="Đang học">Đang học</option>
+          <option value="Đã hoàn thành">Đã hoàn thành</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Thời gian</th>
+            <th>Chuyên đề / Nội dung</th>
+            <th>Giảng viên</th>
+            <th>Địa điểm / Hình thức</th>
+            <th>Trạng thái</th>
+            <th class="no-print">Thao tác</th>
+          </tr>
+        </thead>
+        <tbody id="scheduleTableBody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 4. LỊCH THI -->
+  <section id="view-exams" class="view-section">
+    <div class="sec-head">
+      <div>
+        <h2 class="sec-title"><i data-lucide="clipboard-check" size="22" color="#8f1d24"></i>Lịch thi &amp; Kiểm tra</h2>
+        <p class="sec-sub">Lịch thi môn học, tiểu luận / bài thu hoạch, hình thức thi và lưu ý quan trọng</p>
+      </div>
+      <div class="toolbar-right no-print">
+        <button class="btn btn-primary btn-sm" id="addExamBtn"><i data-lucide="plus" size="14"></i>Thêm lịch thi</button>
+      </div>
+    </div>
+
+    <div id="examsGrid" class="grid-2"></div>
+  </section>
+
+  <!-- 5. THÔNG BÁO -->
+  <section id="view-notices" class="view-section">
+    <div class="sec-head">
+      <div>
+        <h2 class="sec-title"><i data-lucide="megaphone" size="22" color="#8f1d24"></i>Bảng tin &amp; Thông báo lớp</h2>
+        <p class="sec-sub">Thông báo hành chính, lịch sinh hoạt chi bộ/lớp, quy định và nhắc nhở quan trọng</p>
+      </div>
+      <div class="toolbar-right no-print">
+        <button class="btn btn-primary btn-sm" id="addNoticeBtn"><i data-lucide="plus" size="14"></i>Đăng thông báo</button>
+      </div>
+    </div>
+
+    <div class="toolbar no-print">
+      <div class="chip-group" id="noticeCategoryChips">
+        <button class="chip active" data-cat="ALL">Tất cả</button>
+        <button class="chip" data-cat="Hành chính">Hành chính</button>
+        <button class="chip" data-cat="Học tập & Thi">Học tập &amp; Thi</button>
+        <button class="chip" data-cat="Sinh hoạt lớp">Sinh hoạt lớp</button>
+      </div>
+    </div>
+
+    <div id="noticesList" style="display:grid;gap:12px;"></div>
+  </section>
+
+  <!-- 6. TÀI LIỆU -->
+  <section id="view-docs" class="view-section">
+    <div class="sec-head">
+      <div>
+        <h2 class="sec-title"><i data-lucide="folder-open" size="22" color="#8f1d24"></i>Kho tài liệu học tập</h2>
+        <p class="sec-sub">Đề cương, bài giảng, văn kiện tham khảo, liên kết tài liệu và xuất file .docx trực tiếp</p>
+      </div>
+      <div class="toolbar-right no-print">
+        <button class="btn btn-primary btn-sm" id="addDocBtn"><i data-lucide="file-plus" size="14"></i>Thêm tài liệu</button>
+      </div>
+    </div>
+
+    <div class="toolbar no-print">
+      <div class="search-box">
+        <i data-lucide="search" size="15"></i>
+        <input type="text" id="docSearch" class="input" placeholder="Tìm tên tài liệu, môn học, ghi chú...">
+      </div>
+    </div>
+
+    <div id="docsGrid" class="grid-3"></div>
+  </section>
+
+  <!-- 7. ẢNH KỶ NIỆM -->
+  <section id="view-gallery" class="view-section">
+    <div class="sec-head">
+      <div>
+        <h2 class="sec-title"><i data-lucide="images" size="22" color="#8f1d24"></i>Album ảnh kỷ niệm K20A11</h2>
+        <p class="sec-sub">Lưu giữ khoảnh khắc lên lớp, nghiên cứu thực tế, tọa đàm và sinh hoạt tập thể</p>
+      </div>
+      <div class="toolbar-right no-print">
+        <button class="btn btn-primary btn-sm" id="addPhotoBtn"><i data-lucide="image-plus" size="14"></i>Thêm ảnh kỷ niệm</button>
+      </div>
+    </div>
+
+    <div id="galleryGrid" class="grid-3"></div>
+  </section>
+
+  <!-- 8. TRỢ LÝ TIỂU HOA SEN -->
+  <section id="view-ai" class="view-section">
+    <div class="sec-head">
+      <div>
+        <h2 class="sec-title"><i data-lucide="sparkles" size="22" color="#8f1d24"></i>Trợ lý Tiểu Hoa Sen</h2>
+        <p class="sec-sub">Trợ lý học tập Cao cấp lý luận chính trị: Soạn bài, Giải đề, Chấm bài, Ôn tập, đính kèm file (.docx, .pdf, .txt, .md, ảnh) &amp; xuất .docx</p>
+      </div>
+    </div>
+
+    <div class="ai-layout">
+      <div class="card" style="display:grid;gap:14px;">
+        <div class="form-row">
+          <label for="aiApiKeyInput">Gemini API Key (lưu cục bộ trên trình duyệt)</label>
+          <div style="display:flex;gap:6px;">
+            <input type="password" id="aiApiKeyInput" class="input" placeholder="AIza...">
+            <button class="btn btn-outline btn-sm" id="saveAiKeyBtn">Lưu</button>
+          </div>
+          <small style="color:var(--muted);font-size:11.5px;">Key chỉ lưu ở máy bạn (<code>localStorage</code>) để gọi trực tiếp Gemini API.</small>
+        </div>
+
+        <div class="form-row">
+          <label for="aiModeSelect">Chế độ làm việc</label>
+          <select id="aiModeSelect" class="select">
+            <option value="Soạn bài">Soạn bài / Đề cương / Bài phát biểu</option>
+            <option value="Giải đề">Giải đề / Phân tích câu hỏi lý luận</option>
+            <option value="Chấm bài">Chấm bài / Nhận xét &amp; góp ý điểm</option>
+            <option value="Ôn tập">Ôn tập / Hệ thống hóa kiến thức trọng tâm</option>
+            <option value="Tự do">Trao đổi tự do</option>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <label>Lệnh gợi ý nhanh</label>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;">
+            <button class="chip ai-prompt-chip" data-prompt="Hãy lập dàn ý chi tiết và gợi ý nội dung trọng tâm cho một chuyên đề Cao cấp lý luận chính trị về xây dựng, chỉnh đốn Đảng và hệ thống chính trị ở cơ sở.">Dàn ý chuyên đề</button>
+            <button class="chip ai-prompt-chip" data-prompt="Hãy phân tích mối quan hệ biện chứng giữa lý luận và thực tiễn trong vận dụng chủ nghĩa Mác – Lênin, tư tưởng Hồ Chí Minh vào thực tiễn địa phương hiện nay.">Phân tích lý luận – thực tiễn</button>
+            <button class="chip ai-prompt-chip" data-prompt="Hãy tạo bộ câu hỏi ôn tập và gợi ý hướng trả lời ngắn gọn, chuẩn mực cho kỳ thi hết môn Cao cấp lý luận chính trị.">Câu hỏi ôn tập</button>
           </div>
         </div>
-        <p class="script-title text-xl sm:text-2xl text-red-700 font-semibold">
-          “Hành trình tri thức, Kết nối tình thân.”
+
+        <div class="form-row">
+          <label for="aiFileInput">Đính kèm tài liệu / bài làm / ảnh</label>
+          <input type="file" id="aiFileInput" class="input" accept=".txt,.md,.csv,.json,.docx,.pdf,image/*" multiple>
+          <div id="aiAttachmentsList" style="display:grid;gap:6px;margin-top:4px;"></div>
+        </div>
+
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <button class="btn btn-outline btn-sm" id="exportLastAiDocxBtn"><i data-lucide="file-down" size="14"></i>Xuất phản hồi mới nhất (.docx)</button>
+          <button class="btn btn-danger-soft btn-sm" id="clearAiChatBtn"><i data-lucide="trash-2" size="14"></i>Xóa hội thoại</button>
+        </div>
+      </div>
+
+      <div class="ai-chat-box">
+        <div class="ai-chat-head">
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div style="width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,0.16);display:grid;place-items:center;border:1px solid rgba(246,231,190,0.45);">
+              <i data-lucide="flower-2" size="19"></i>
+            </div>
+            <div>
+              <div style="font-weight:800;font-size:14.5px;">Trợ lý Tiểu Hoa Sen – K20A11</div>
+              <div style="font-size:11.5px;color:var(--gold-light);">Hỗ trợ học tập, phân tích, soạn thảo &amp; chấm bài chuẩn mực</div>
+            </div>
+          </div>
+          <span class="badge badge-gold" id="aiActiveModeBadge">Soạn bài</span>
+        </div>
+
+        <div class="ai-messages" id="aiMessages"></div>
+
+        <form class="ai-composer" id="aiComposerForm">
+          <textarea id="aiPromptInput" class="textarea" placeholder="Nhập câu hỏi, đề bài, đoạn văn cần chấm hoặc yêu cầu soạn bài... (Nhấn Enter để gửi, Shift+Enter xuống dòng)"></textarea>
+          <button type="submit" class="btn btn-primary" id="aiSendBtn"><i data-lucide="send" size="15"></i>Gửi</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. ĐỒNG BỘ DỮ LIỆU -->
+  <section id="view-sync" class="view-section">
+    <div class="sec-head">
+      <div>
+        <h2 class="sec-title"><i data-lucide="cloud" size="22" color="#8f1d24"></i>Đồng bộ &amp; Sao lưu dữ liệu lớp</h2>
+        <p class="sec-sub">Đồng bộ dữ liệu thời gian thực qua Firebase Realtime Database, xuất/nhập bản sao lưu JSON và khôi phục dữ liệu mẫu</p>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card" style="display:grid;gap:12px;">
+        <h3 style="margin:0;font-size:16px;">Đồng bộ đám mây (Firebase Realtime Database)</h3>
+        <p style="margin:0;font-size:13px;color:var(--ink-2);">
+          Mọi thay đổi về danh sách lớp, kế hoạch học tập, lịch thi, thông báo, tài liệu và ảnh kỷ niệm đều được lưu cục bộ và có thể đẩy lên / tải về từ máy chủ lớp. Ảnh tải lên được tự động nén trước khi gửi để tối ưu tốc độ.
         </p>
+        <div class="form-row">
+          <label for="firebaseUrlInput">Endpoint JSON Firebase Realtime Database</label>
+          <input type="url" id="firebaseUrlInput" class="input" value="https://cong-thong-tin-k20a11-default-rtdb.asia-southeast1.firebasedatabase.app/k20a11_data.json">
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;">
+          <button class="btn btn-primary btn-sm" id="syncPushBtn"><i data-lucide="upload-cloud" size="14"></i>Đẩy dữ liệu lên Firebase</button>
+          <button class="btn btn-outline btn-sm" id="syncPullBtn"><i data-lucide="download-cloud" size="14"></i>Tải dữ liệu từ Firebase</button>
+          <button class="btn btn-outline btn-sm" id="saveFirebaseUrlBtn"><i data-lucide="check" size="14"></i>Lưu đường dẫn</button>
+        </div>
+        <div id="syncStatusBox" class="badge" style="justify-self:start;">Chưa thực hiện đồng bộ trong phiên này</div>
       </div>
 
-      <!-- Thanh điều hướng & tìm kiếm -->
-      <div class="mt-4 flex flex-col md:flex-row md:items-center justify-between gap-3">
-        <nav class="flex flex-wrap items-center gap-1.5 sm:gap-2">
-          <button data-tab="home" onclick="switchTab('home')" class="nav-btn px-3.5 py-2 rounded-xl text-sm font-semibold bg-red-800 text-white shadow-sm">
-            🏠 Trang chủ
-          </button>
-          <button data-tab="students" onclick="switchTab('students')" class="nav-btn px-3.5 py-2 rounded-xl text-sm font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700">
-            👥 Học viên
-          </button>
-          <button data-tab="study" onclick="switchTab('study')" class="nav-btn px-3.5 py-2 rounded-xl text-sm font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700">
-            📖 Học tập
-          </button>
-          <button data-tab="schedule" onclick="switchTab('schedule')" class="nav-btn px-3.5 py-2 rounded-xl text-sm font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700">
-            📅 Lịch học
-          </button>
-          <button data-tab="gallery" onclick="switchTab('gallery')" class="nav-btn px-3.5 py-2 rounded-xl text-sm font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700">
-            🖼️ Kỷ niệm
-          </button>
-          <button data-tab="share" onclick="switchTab('share')" class="nav-btn px-3.5 py-2 rounded-xl text-sm font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700">
-            📂 Chia sẻ
-          </button>
-          <button data-tab="contact" onclick="switchTab('contact')" class="nav-btn px-3.5 py-2 rounded-xl text-sm font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700">
-            ☎️ Liên hệ
-          </button>
-        </nav>
-
-        <div class="relative w-full md:w-72">
-          <input
-            id="globalSearchInput"
-            type="text"
-            oninput="handleGlobalSearch(this.value)"
-            placeholder="Tìm học viên, lịch học, nghị định..."
-            class="w-full pl-9 pr-4 py-2 rounded-xl border border-slate-300 focus:border-red-700 focus:ring-2 focus:ring-red-200 outline-none text-sm bg-slate-50"
-          />
-          <span class="absolute left-3 top-2.5 text-slate-400 text-sm">🔍</span>
-          <div id="searchResultsBox" class="hidden absolute right-0 mt-1.5 w-full sm:w-96 bg-white border border-slate-200 rounded-2xl shadow-xl z-50 max-h-80 overflow-y-auto p-2 text-sm"></div>
+      <div class="card" style="display:grid;gap:12px;">
+        <h3 style="margin:0;font-size:16px;">Sao lưu tệp JSON &amp; Khôi phục</h3>
+        <p style="margin:0;font-size:13px;color:var(--ink-2);">
+          Xuất toàn bộ dữ liệu lớp ra tệp <code>.json</code> để lưu trữ ngoại tuyến hoặc chuyển giao giữa các thiết bị.
+        </p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;">
+          <button class="btn btn-gold btn-sm" id="exportJsonBtn"><i data-lucide="file-json" size="14"></i>Xuất bản sao lưu (.json)</button>
+          <label class="btn btn-outline btn-sm" style="margin:0;">
+            <i data-lucide="folder-up" size="14"></i>Nhập tệp sao lưu (.json)
+            <input type="file" id="importJsonInput" accept=".json,application/json" style="display:none;">
+          </label>
+          <button class="btn btn-danger-soft btn-sm" id="resetDemoBtn"><i data-lucide="rotate-ccw" size="14"></i>Khôi phục dữ liệu mẫu</button>
         </div>
       </div>
     </div>
-  </header>
+  </section>
+</main>
 
-  <!-- Thanh điều khiển quản trị -->
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 mt-4">
-    <div id="adminBar" class="glass-card rounded-2xl p-3 flex flex-wrap items-center justify-between gap-2">
-      <div id="adminGuestControls" class="flex items-center gap-2 flex-wrap">
-        <button onclick="openAdminModal()" class="px-4 py-2 rounded-xl bg-red-800 hover:bg-red-900 text-white text-sm font-semibold shadow-sm transition">
-          🔐 Đăng nhập Quản trị
-        </button>
-        <span class="text-xs text-slate-500">Chế độ xem dành cho học viên K20A11</span>
-      </div>
-      <div id="adminActiveControls" class="hidden items-center gap-2 flex-wrap">
-        <span class="px-3 py-1.5 rounded-xl bg-emerald-100 text-emerald-900 text-xs font-bold border border-emerald-300">
-          ✓ Đang đăng nhập Quản trị (K20a11)
-        </span>
-        <button onclick="openChangePasswordModal()" class="px-3 py-1.5 rounded-xl bg-amber-100 hover:bg-amber-200 text-amber-950 text-xs font-bold border border-amber-300">
-          🔑 Đổi mật khẩu
-        </button>
-        <button onclick="downloadUpdatedHtml()" class="px-3 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold">
-          💾 Tải file HTML (Có dữ liệu mới)
-        </button>
-        <button onclick="logoutAdmin()" class="px-3 py-1.5 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-800 text-xs font-bold">
-          Đăng xuất
-        </button>
-      </div>
+<!-- Floating AI Button -->
+<button class="fab-ai no-print" id="fabAiBtn" title="Mở Trợ lý Tiểu Hoa Sen">
+  <i data-lucide="sparkles" size="18"></i>
+  <span class="fab-text">Tiểu Hoa Sen</span>
+</button>
+
+<!-- Toast Container -->
+<div class="toast-wrap" id="toastWrap"></div>
+
+<!-- Generic Modal -->
+<div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal">
+    <div class="modal-head">
+      <h3 class="modal-title" id="modalTitle">Tiêu đề</h3>
+      <button class="btn btn-outline btn-xs" id="modalCloseBtn" aria-label="Đóng"><i data-lucide="x" size="16"></i></button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+    <div class="modal-foot" id="modalFoot"></div>
+  </div>
+</div>
+
+<!-- Lightbox Modal -->
+<div class="modal-backdrop" id="lightboxBackdrop" role="dialog" aria-modal="true">
+  <div class="modal" style="max-width:860px;">
+    <div class="modal-head">
+      <h3 class="modal-title" id="lightboxTitle">Xem ảnh</h3>
+      <button class="btn btn-outline btn-xs" id="lightboxCloseBtn" aria-label="Đóng"><i data-lucide="x" size="16"></i></button>
+    </div>
+    <div class="modal-body" style="text-align:center;">
+      <img id="lightboxImg" src="" alt="" style="margin:0 auto;max-height:68vh;border-radius:12px;">
+      <p id="lightboxCaption" style="margin:8px 0 0;color:var(--ink-2);font-size:13.5px;"></p>
     </div>
   </div>
+</div>
 
-  <!-- Nội dung chính -->
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 py-6">
-    <!-- TAB 1: TRANG CHỦ -->
-    <section id="tab-home" class="tab-panel space-y-6">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-        <div class="lg:col-span-5 glass-card rounded-3xl p-6 sm:p-8 space-y-5">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-50 border border-red-200 text-red-800 text-xs font-bold">
-            ★ CAO CẤP LÝ LUẬN CHÍNH TRỊ • KHÓA 2026 - 2027
-          </div>
-          <h1 class="script-title text-5xl sm:text-6xl font-bold text-blue-900">K20A11</h1>
-          <p class="text-xl sm:text-2xl font-bold text-slate-800 leading-snug">
-            "Cùng học tập, cùng trưởng thành, cùng lưu giữ những năm tháng đáng nhớ!"
-          </p>
-          <p class="text-sm text-slate-600 leading-relaxed">
-            Cổng thông tin học tập, sinh hoạt, chia sẻ tài liệu và gắn kết tập thể lớp Cao cấp Lý luận Chính trị K20A11 tại Học viện Chính trị khu vực IV.
-          </p>
-          <div class="flex flex-wrap gap-3 pt-1">
-            <button onclick="switchTab('students')" class="px-5 py-3 rounded-2xl bg-red-800 hover:bg-red-900 text-white font-bold text-sm shadow transition">
-              👥 Danh sách Học viên
-            </button>
-            <button onclick="switchTab('study')" class="px-5 py-3 rounded-2xl bg-blue-700 hover:bg-blue-800 text-white font-bold text-sm shadow transition">
-              📖 Góc học tập
-            </button>
-          </div>
-        </div>
+<script>
+const STORAGE_KEY = 'K20A11_PORTAL_DATA_V1';
+const API_KEY_STORAGE = 'K20A11_GEMINI_API_KEY';
+const DEFAULT_FIREBASE_URL = 'https://cong-thong-tin-k20a11-default-rtdb.asia-southeast1.firebasedatabase.app/k20a11_data.json';
 
-        <div class="lg:col-span-7 glass-card rounded-3xl p-4 sm:p-5 border-2 border-amber-300/80">
-          <div id="heroPhotoContainer" class="relative rounded-2xl overflow-hidden bg-slate-100 aspect-[16/10] flex items-center justify-center">
-            <img id="heroMainImage" src="" alt="Ảnh tập thể lớp K20A11" class="w-full h-full object-cover" />
-          </div>
-          <div class="mt-3 flex items-center justify-between gap-2 text-xs text-slate-600">
-            <span id="heroCaptionText" class="font-medium">Tập thể lớp Cao cấp Lý luận Chính trị K20A11 – Học viện Chính trị khu vực IV</span>
-            <span class="px-2.5 py-1 rounded-lg bg-amber-50 text-amber-800 font-semibold border border-amber-200">
-              Cổng thông tin lớp
-            </span>
-          </div>
-        </div>
-      </div>
+function uid(prefix = 'id') {
+  return prefix + '_' + Math.random().toString(36).slice(2, 9) + '_' + Date.now().toString(36);
+}
 
-      <!-- Thông báo mới nhất -->
-      <div class="glass-card rounded-3xl p-6">
-        <div class="flex items-center justify-between gap-3 mb-4 flex-wrap">
-          <h2 class="text-xl font-bold text-red-900">📢 Thông báo & Tin tức lớp K20A11</h2>
-          <button id="btnAddAnnouncement" onclick="addAnnouncement()" class="hidden px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold">
-            + Thêm thông báo
-          </button>
-        </div>
-        <div id="announcementsList" class="space-y-3"></div>
-      </div>
-    </section>
+function escapeHtml(str = '') {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
 
-    <!-- TAB 2: HỌC VIÊN -->
-    <section id="tab-students" class="tab-panel hidden space-y-5">
-      <div class="glass-card rounded-3xl p-6">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
-          <div>
-            <h2 class="text-2xl font-bold text-red-900">👥 Danh sách Học viên lớp K20A11</h2>
-            <p class="text-sm text-slate-600">Tập thể học viên lớp Cao cấp Lý luận Chính trị K20A11</p>
-          </div>
-          <button id="btnAddStudent" onclick="addStudent()" class="hidden px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold">
-            + Thêm học viên
-          </button>
-        </div>
-        <div id="studentsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
-      </div>
-    </section>
+function formatDateVi(dateStr) {
+  if (!dateStr) return 'Chưa cập nhật';
+  const d = new Date(dateStr);
+  if (isNaN(d.getTime())) return dateStr;
+  return d.toLocaleDateString('vi-VN', { day: '2-digit', month: '2-digit', year: 'numeric' });
+}
 
-    <!-- TAB 3: HỌC TẬP -->
-    <section id="tab-study" class="tab-panel hidden space-y-5">
-      <div class="glass-card rounded-3xl p-6">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
-          <div>
-            <h2 class="text-2xl font-bold text-red-900">📖 Chương trình & Tài liệu Học tập</h2>
-            <p class="text-sm text-slate-600">Các chuyên đề, môn học và tài liệu học tập khóa 2026 - 2027</p>
-          </div>
-          <button id="btnAddSubject" onclick="addSubject()" class="hidden px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold">
-            + Thêm môn học / chuyên đề
-          </button>
-        </div>
-        <div id="subjectsList" class="space-y-4"></div>
-      </div>
-    </section>
+function showToast(msg) {
+  const wrap = document.getElementById('toastWrap');
+  const el = document.createElement('div');
+  el.className = 'toast';
+  el.textContent = msg;
+  wrap.appendChild(el);
+  setTimeout(() => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(6px)';
+    el.style.transition = '0.2s ease';
+    setTimeout(() => el.remove(), 220);
+  }, 2800);
+}
 
-    <!-- TAB 4: LỊCH HỌC -->
-    <section id="tab-schedule" class="tab-panel hidden space-y-5">
-      <div class="glass-card rounded-3xl p-6">
-        <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-4">
-          <div>
-            <h2 class="text-2xl font-bold text-red-900">📅 Lịch học K20A11</h2>
-            <p class="text-sm text-slate-600">Theo dõi lịch lên lớp, lịch thi và tải PDF / ảnh lịch học trực tiếp</p>
-          </div>
-          <div id="scheduleAdminActions" class="hidden flex flex-wrap gap-2">
-            <button onclick="addScheduleItem()" class="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold">
-              + Thêm buổi học
-            </button>
-            <label class="px-3.5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold cursor-pointer">
-              + Tải PDF / Ảnh Lịch học
-              <input type="file" accept="application/pdf,image/*" class="hidden" onchange="handleScheduleFileUpload(event)" />
-            </label>
-          </div>
-        </div>
-        <div id="scheduleList" class="space-y-3 mb-6"></div>
-        <div id="scheduleAttachmentBox" class="border-t border-slate-200 pt-5">
-          <h3 class="text-lg font-bold text-slate-800 mb-3">📎 Bản PDF / Ảnh Lịch học đính kèm</h3>
-          <div id="scheduleAttachmentViewer" class="bg-slate-50 border border-slate-200 rounded-2xl p-4 text-sm text-slate-600">
-            Chưa có tệp PDF hoặc ảnh lịch học đính kèm.
-          </div>
-        </div>
-      </div>
-    </section>
+/**
+ * Tự động nén ảnh (Data URL) bằng Canvas trước khi lưu / đẩy lên Firebase
+ * để ảnh ~700 KB tải lên nhanh và nhẹ hơn.
+ */
+function compressImageDataUrl(dataUrl, { maxWidth = 1280, maxHeight = 1280, quality = 0.72, maxBytes = 420 * 1024 } = {}) {
+  return new Promise((resolve) => {
+    if (!dataUrl || typeof dataUrl !== 'string' || !dataUrl.startsWith('data:image/')) {
+      resolve(dataUrl);
+      return;
+    }
 
-    <!-- TAB 5: KỶ NIỆM -->
-    <section id="tab-gallery" class="tab-panel hidden space-y-5">
-      <div class="glass-card rounded-3xl p-6">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5">
-          <div>
-            <h2 class="text-2xl font-bold text-red-900">🖼️ Kỷ niệm tập thể K20A11</h2>
-            <p class="text-sm text-slate-600">Lưu giữ những hình ảnh đẹp trong suốt quá trình học tập và rèn luyện</p>
-          </div>
-          <button id="btnAddAlbum" onclick="addAlbum()" class="hidden px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold">
-            + Tạo album kỷ niệm mới
-          </button>
-        </div>
-        <div id="albumsContainer" class="space-y-6"></div>
-      </div>
-    </section>
+    const approxBytes = Math.ceil((dataUrl.length * 3) / 4);
+    const img = new Image();
+    img.onload = () => {
+      let { width, height } = img;
+      const ratio = Math.min(maxWidth / width, maxHeight / height, 1);
+      width = Math.max(1, Math.round(width * ratio));
+      height = Math.max(1, Math.round(height * ratio));
 
-    <!-- TAB 6: CHIA SẺ -->
-    <section id="tab-share" class="tab-panel hidden space-y-5">
-      <div class="glass-card rounded-3xl p-6">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
-          <div>
-            <h2 class="text-2xl font-bold text-red-900">📂 Chia sẻ Tài liệu, Nghị định & Văn bản pháp luật</h2>
-            <p class="text-sm text-slate-600">Kho văn bản tham khảo để cả lớp tra cứu và để Tiểu Hoa Sen tự động đối chiếu</p>
-          </div>
-          <button id="btnAddShareDoc" onclick="addShareDoc()" class="hidden px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold">
-            + Thêm tài liệu / Nghị định
-          </button>
-        </div>
-        <div id="shareDocsList" class="space-y-3"></div>
-      </div>
-    </section>
+      const canvas = document.createElement('canvas');
+      canvas.width = width;
+      canvas.height = height;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) {
+        resolve(dataUrl);
+        return;
+      }
 
-    <!-- TAB 7: LIÊN HỆ -->
-    <section id="tab-contact" class="tab-panel hidden space-y-5">
-      <div class="glass-card rounded-3xl p-6">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
-          <div>
-            <h2 class="text-2xl font-bold text-red-900">☎️ Thông tin Liên hệ Ban cán sự & Chủ nhiệm lớp</h2>
-            <p class="text-sm text-slate-600">Chủ nhiệm lớp, Lớp trưởng và các Lớp phó lớp K20A11</p>
-          </div>
-          <button id="btnAddContact" onclick="addContactPerson()" class="hidden px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold">
-            + Thêm đầu mối liên hệ
-          </button>
-        </div>
-        <div id="contactsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
-      </div>
-    </section>
-  </main>
+      // Nền trắng để tránh lỗi đen khi chuyển ảnh PNG trong suốt sang JPEG
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, width, height);
+      ctx.drawImage(img, 0, 0, width, height);
 
-  <!-- Khung tương tác Trợ lý Tiểu Hoa Sen -->
-  <div id="lotusBubbleBox" class="fixed bottom-24 right-4 sm:right-6 z-40 w-[92vw] max-w-sm bg-white/95 border-2 border-pink-300 rounded-3xl shadow-2xl p-4">
-    <p id="lotusGreetingText" class="text-sm text-slate-800 leading-relaxed font-medium"></p>
-    <div class="mt-3 flex items-center gap-2 flex-wrap">
-      <button onclick="nextLotusWish()" class="px-3 py-1.5 rounded-xl bg-pink-100 hover:bg-pink-200 text-pink-900 text-xs font-bold">
-        Lời chúc tiếp theo
-      </button>
-      <button onclick="copyLotusWish()" class="px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold">
-        Sao chép
-      </button>
-    </div>
-  </div>
+      let currentQuality = quality;
+      let output = canvas.toDataURL('image/jpeg', currentQuality);
 
-  <!-- Cụm nút Tiểu Hoa Sen -->
-  <div id="lotusWidgetDock" class="fixed bottom-4 right-4 sm:right-6 z-50 flex items-end gap-2.5">
-    <div id="lotusActionButtons" class="flex flex-col gap-2">
-      <button onclick="openLotusAssistantModal()" class="px-4 py-2.5 rounded-2xl bg-red-800 hover:bg-red-900 text-white text-xs sm:text-sm font-bold shadow-lg transition">
-        Hỏi Tiểu Hoa Sen
-      </button>
-      <button onclick="toggleLotusSound()" class="px-4 py-2 rounded-2xl bg-white hover:bg-slate-100 text-slate-800 text-xs font-bold shadow border border-slate-200 transition">
-        <span id="lotusSoundLabel">Âm thanh: bật</span>
-      </button>
-      <button onclick="toggleLotusDock()" class="px-4 py-2 rounded-2xl bg-white hover:bg-slate-100 text-slate-700 text-xs font-bold shadow border border-slate-200 transition">
-        Ẩn / hiện
-      </button>
-    </div>
-    <button onclick="handleLotusMascotClick()" title="Tiểu Hoa Sen K20A11" class="lotus-float w-16 h-16 rounded-full bg-gradient-to-br from-pink-200 via-rose-100 to-amber-100 border-2 border-pink-400 shadow-xl flex items-center justify-center text-3xl">
-      🪷
-    </button>
-  </div>
+      // Nếu ảnh sau nén đầu vẫn lớn hơn maxBytes thì giảm dần chất lượng hoặc thu nhỏ thêm
+      while (Math.ceil((output.length * 3) / 4) > maxBytes && currentQuality > 0.42) {
+        currentQuality = Number((currentQuality - 0.08).toFixed(2));
+        output = canvas.toDataURL('image/jpeg', currentQuality);
+      }
 
-  <!-- Modal Học tập & Soạn bài cùng Tiểu Hoa Sen -->
-  <div id="lotusAssistantModal" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-3 sm:p-5">
-    <div class="bg-white rounded-3xl max-w-4xl w-full max-h-[92vh] overflow-y-auto p-5 sm:p-7 shadow-2xl border border-pink-200 space-y-5">
-      <div class="flex items-start justify-between gap-3 border-b border-slate-200 pb-4">
-        <div>
-          <h3 class="text-xl sm:text-2xl font-extrabold text-red-900">🪷 Trợ lý Học tập & Lý luận Chính trị Tiểu Hoa Sen</h3>
-          <p class="text-xs sm:text-sm text-slate-600 mt-1">
-            Nạp bài giảng PDF / dán nội dung, dùng lệnh <b>SOẠN BÀI</b> (hoặc <b>TÓM TẮT BÀI ...</b>), <b>GIẢI ĐỀ</b>, <b>CHẤM BÀI</b>, <b>ÔN TẬP</b> và xuất tệp <b>Word (.docx)</b>.
-          </p>
-        </div>
-        <button onclick="closeLotusAssistantModal()" class="px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-sm">
-          ✕ Đóng
-        </button>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div class="bg-rose-50/70 border border-rose-200 rounded-2xl p-4 space-y-2.5">
-          <div class="flex items-center justify-between gap-2">
-            <label class="text-sm font-bold text-rose-950">1. Tài liệu bài giảng / Văn bản nguồn</label>
-            <label class="px-3 py-1.5 rounded-xl bg-rose-700 hover:bg-rose-800 text-white text-xs font-bold cursor-pointer">
-              + Nạp bài học (PDF / TXT)
-              <input type="file" accept="application/pdf,.txt,.md" class="hidden" onchange="handleLessonFileUpload(event)" />
-            </label>
-          </div>
-          <p id="lessonSourceInfo" class="text-xs text-slate-600 font-medium">Chưa có tệp nào được nạp.</p>
-          <textarea
-            id="lessonContentInput"
-            rows="6"
-            placeholder="Dán nội dung giáo trình, chuyên đề, bài học hoặc tải tệp PDF bài giảng lên đây..."
-            class="w-full p-3 rounded-xl border border-rose-200 bg-white text-sm outline-none focus:border-rose-600"
-          ></textarea>
-        </div>
-
-        <div class="bg-amber-50/70 border border-amber-200 rounded-2xl p-4 space-y-2.5">
-          <label class="block text-sm font-bold text-amber-950">2. Câu lệnh / Yêu cầu xử lý</label>
-          <div class="flex flex-wrap gap-1.5">
-            <button onclick="setQuickCommand('SOẠN BÀI')" class="px-2.5 py-1 rounded-lg bg-red-800 text-white text-xs font-bold">SOẠN BÀI</button>
-            <button onclick="setQuickCommand('TÓM TẮT BÀI')" class="px-2.5 py-1 rounded-lg bg-amber-700 text-white text-xs font-bold">TÓM TẮT BÀI</button>
-            <button onclick="setQuickCommand('GIẢI ĐỀ')" class="px-2.5 py-1 rounded-lg bg-blue-800 text-white text-xs font-bold">GIẢI ĐỀ</button>
-            <button onclick="setQuickCommand('CHẤM BÀI')" class="px-2.5 py-1 rounded-lg bg-emerald-800 text-white text-xs font-bold">CHẤM BÀI</button>
-            <button onclick="setQuickCommand('ÔN TẬP')" class="px-2.5 py-1 rounded-lg bg-purple-800 text-white text-xs font-bold">ÔN TẬP</button>
-          </div>
-          <textarea
-            id="commandPromptInput"
-            rows="5"
-            placeholder='Ví dụ: "TÓM TẮT BÀI..." hoặc "SOẠN BÀI" hoặc "GIẢI ĐỀ: ..."'
-            class="w-full p-3 rounded-xl border border-amber-200 bg-white text-sm outline-none focus:border-amber-600"
-          ></textarea>
-          <div class="flex items-center gap-2 flex-wrap">
-            <button onclick="runLotusCommand()" class="px-4 py-2 rounded-xl bg-red-800 hover:bg-red-900 text-white text-sm font-bold shadow">
-              ▶ Thực hiện ngay
-            </button>
-            <button onclick="exportLotusResultToDocx()" class="px-4 py-2 rounded-xl bg-blue-700 hover:bg-blue-800 text-white text-sm font-bold shadow">
-              📄 Xuất file Word (.docx)
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4 space-y-2">
-        <div class="flex items-center justify-between gap-2 flex-wrap">
-          <h4 class="text-sm font-bold text-slate-900">3. Kết quả từ Tiểu Hoa Sen</h4>
-          <button onclick="copyLotusOutput()" class="px-3 py-1 rounded-lg bg-slate-200 hover:bg-slate-300 text-slate-800 text-xs font-bold">
-            Sao chép nội dung
-          </button>
-        </div>
-        <pre id="lotusOutputArea" class="whitespace-pre-wrap font-sans text-sm text-slate-800 bg-white p-4 rounded-xl border border-slate-200 min-h-[180px] max-h-[360px] overflow-y-auto">Sẵn sàng tiếp nhận tài liệu và câu lệnh của bạn.</pre>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal Đăng nhập Quản trị -->
-  <div id="adminLoginModal" class="hidden fixed inset-0 z-50 bg-slate-900/60 flex items-center justify-center p-4">
-    <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-200 space-y-4">
-      <h3 class="text-xl font-bold text-red-900">🔐 Đăng nhập Quản trị K20A11</h3>
-      <div class="space-y-3">
-        <div>
-          <label class="block text-xs font-bold text-slate-700 mb-1">ID Quản trị</label>
-          <input id="adminIdInput" type="text" value="K20a11" class="w-full px-3.5 py-2 rounded-xl border border-slate-300 text-sm" />
-        </div>
-        <div>
-          <label class="block text-xs font-bold text-slate-700 mb-1">Mật khẩu</label>
-          <input id="adminPassInput" type="password" placeholder="Nhập mật khẩu quản trị..." class="w-full px-3.5 py-2 rounded-xl border border-slate-300 text-sm" />
-        </div>
-      </div>
-      <div class="flex justify-end gap-2 pt-2">
-        <button onclick="closeAdminModal()" class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm font-bold">Hủy</button>
-        <button onclick="submitAdminLogin()" class="px-4 py-2 rounded-xl bg-red-800 hover:bg-red-900 text-white text-sm font-bold">Đăng nhập</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal Đổi mật khẩu Quản trị -->
-  <div id="changePasswordModal" class="hidden fixed inset-0 z-50 bg-slate-900/60 flex items-center justify-center p-4">
-    <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-200 space-y-4">
-      <h3 class="text-xl font-bold text-red-900">🔑 Đổi mật khẩu Quản trị</h3>
-      <div class="space-y-3">
-        <div>
-          <label class="block text-xs font-bold text-slate-700 mb-1">Mật khẩu hiện tại</label>
-          <input id="oldPassInput" type="password" class="w-full px-3.5 py-2 rounded-xl border border-slate-300 text-sm" />
-        </div>
-        <div>
-          <label class="block text-xs font-bold text-slate-700 mb-1">Mật khẩu mới</label>
-          <input id="newPassInput" type="password" class="w-full px-3.5 py-2 rounded-xl border border-slate-300 text-sm" />
-        </div>
-        <div>
-          <label class="block text-xs font-bold text-slate-700 mb-1">Xác nhận mật khẩu mới</label>
-          <input id="confirmPassInput" type="password" class="w-full px-3.5 py-2 rounded-xl border border-slate-300 text-sm" />
-        </div>
-      </div>
-      <div class="flex justify-end gap-2 pt-2">
-        <button onclick="closeChangePasswordModal()" class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm font-bold">Hủy</button>
-        <button onclick="submitChangePassword()" class="px-4 py-2 rounded-xl bg-blue-700 hover:bg-blue-800 text-white text-sm font-bold">Lưu mật khẩu</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal Xem ảnh phóng to -->
-  <div id="imagePreviewModal" class="hidden fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4" onclick="this.classList.add('hidden')">
-    <img id="previewModalImg" src="" alt="Xem ảnh phóng to" class="max-h-[90vh] max-w-[95vw] rounded-2xl shadow-2xl" />
-  </div>
-
-  <script>
-    // Cấu hình Firebase Realtime Database thật tại khu vực Singapore
-    const FIREBASE_DB_URL = "https://cong-thong-tin-k20a11-default-rtdb.asia-southeast1.firebasedatabase.app/k20a11_data.json";
-    const LOCAL_STORAGE_KEY = "K20A11_PORTAL_DATA_V1";
-    const ADMIN_ID_EXPECTED = "K20a11";
-    const DEFAULT_PASS_PLAIN = "Abc@123";
-
-    const DEFAULT_HERO_SVG =
-      "data:image/svg+xml;utf8," +
-      encodeURIComponent(
-        `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750">
-          <defs>
-            <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#991b1b"/>
-              <stop offset="55%" stop-color="#b45309"/>
-              <stop offset="100%" stop-color="#1e3a8a"/>
-            </linearGradient>
-          </defs>
-          <rect width="1200" height="750" fill="url(#bg)"/>
-          <circle cx="600" cy="270" r="110" fill="#fef08a" opacity="0.22"/>
-          <text x="600" y="255" text-anchor="middle" fill="#fde047" font-size="42" font-weight="bold" font-family="Arial, sans-serif">HỌC VIỆN CHÍNH TRỊ KHU VỰC IV</text>
-          <text x="600" y="335" text-anchor="middle" fill="#ffffff" font-size="68" font-weight="bold" font-family="Arial, sans-serif">LỚP CAO CẤP LÝ LUẬN CHÍNH TRỊ K20A11</text>
-          <text x="600" y="405" text-anchor="middle" fill="#fef3c7" font-size="34" font-family="Arial, sans-serif">Hành trình tri thức • Kết nối tình thân • Khóa 2026 - 2027</text>
-          <text x="600" y="515" text-anchor="middle" fill="#e2e8f0" font-size="26" font-family="Arial, sans-serif">Cập nhật ảnh tập thể lớp trực tiếp tại mục Kỷ niệm hoặc Trang chủ</text>
-        </svg>`
-      );
-
-    const DEFAULT_DATA = {
-      adminPassHash: "",
-      heroImage: DEFAULT_HERO_SVG,
-      heroCaption: "Tập thể lớp Cao cấp Lý luận Chính trị K20A11 – Học viện Chính trị khu vực IV",
-      announcements: [
-        {
-          id: "ann-1",
-          title: "Chào mừng Cổng thông tin lớp Cao cấp Lý luận Chính trị K20A11",
-          date: "2026-2027",
-          content: "Nơi cập nhật thông báo, lịch học, tài liệu học tập, văn bản tham khảo và lưu giữ kỷ niệm của tập thể lớp K20A11."
+      if (Math.ceil((output.length * 3) / 4) > maxBytes) {
+        const scaleDown = 0.8;
+        canvas.width = Math.max(1, Math.round(width * scaleDown));
+        canvas.height = Math.max(1, Math.round(height * scaleDown));
+        const ctx2 = canvas.getContext('2d');
+        if (ctx2) {
+          ctx2.fillStyle = '#ffffff';
+          ctx2.fillRect(0, 0, canvas.width, canvas.height);
+          ctx2.drawImage(img, 0, 0, canvas.width, canvas.height);
+          output = canvas.toDataURL('image/jpeg', 0.65);
         }
-      ],
-      students: [
-        { id: "hv-1", name: "Nguyễn Ngọc Công Hữu", role: "Ban cán sự lớp", unit: "Xã Tân Hòa, TP. Cần Thơ" }
-      ],
-      subjects: [
-        {
-          id: "sub-1",
-          name: "Triết học Mác - Lênin & Kinh tế chính trị",
-          note: "Nền tảng phương pháp luận duy vật biện chứng, duy vật lịch sử và tư duy kinh tế - chính trị."
-        },
-        {
-          id: "sub-2",
-          name: "Xây dựng Đảng, Tư tưởng Hồ Chí Minh & Khoa học lãnh đạo",
-          note: "Vận dụng lý luận vào thực tiễn lãnh đạo, quản lý cấp cơ sở và vùng Đồng bằng sông Cửu Long."
-        }
-      ],
-      scheduleItems: [
-        {
-          id: "sch-1",
-          date: "27/11/2026",
-          subject: "Khoa học lãnh đạo (KHLĐ)",
-          room: "Học viện Chính trị khu vực IV – TP. Cần Thơ",
-          note: "Chuẩn bị nội dung thảo luận và tình huống thực tiễn cơ sở."
-        }
-      ],
-      scheduleAttachment: null,
-      albums: [
-        {
-          id: "alb-1",
-          title: "Lễ Khai giảng & Hoạt động đầu khóa",
-          date: "08 - 10/9/2026",
-          desc: "Những khoảnh khắc ngày tựu trường, lễ khai giảng và tuần sinh hoạt đầu khóa của tập thể K20A11.",
-          photos: []
-        }
-      ],
-      shareDocs: [
-        {
-          id: "doc-1",
-          title: "Hệ thống Nghị quyết, Quy định về tổ chức bộ máy & chính quyền địa phương",
-          category: "Văn bản tham khảo",
-          summary: "Cập nhật văn bản phục vụ học tập, nghiên cứu và đối chiếu quy định hiện hành khi làm bài."
-        }
-      ],
-      contacts: [
-        {
-          id: "ct-1",
-          role: "Chủ nhiệm lớp",
-          name: "ThS Nguyễn Văn Trai",
-          phone: "0917.362.271",
-          unit: "Học viện Chính trị khu vực IV"
-        },
-        {
-          id: "ct-2",
-          role: "Lớp trưởng",
-          name: "Cập nhật danh sách Ban cán sự",
-          phone: "Đang cập nhật",
-          unit: "Lớp K20A11 – HVCTKV IV"
-        },
-        {
-          id: "ct-3",
-          role: "Lớp phó",
-          name: "Cập nhật danh sách Ban cán sự",
-          phone: "Đang cập nhật",
-          unit: "Lớp K20A11 – HVCTKV IV"
-        }
-      ]
+      }
+
+      // Chỉ dùng bản gốc nếu bản gốc vốn dĩ đã nhỏ gọn và nhẹ hơn bản nén
+      const finalBytes = Math.ceil((output.length * 3) / 4);
+      if (approxBytes <= maxBytes && approxBytes < finalBytes) {
+        resolve(dataUrl);
+      } else {
+        resolve(output);
+      }
     };
+    img.onerror = () => resolve(dataUrl);
+    img.src = dataUrl;
+  });
+}
 
-    const LOTUS_WISHES = [
-      "Chào buổi sáng! Mình là Tiểu Hoa Sen của lớp K20A11. Chúc cả lớp một ngày làm việc, học tập minh mẫn, hiệu quả và nhiều niềm vui!",
-      "Đoàn kết là sức mạnh vô địch: Một cây làm chẳng nên non, ba cây chụm lại nên hòn núi cao.",
-      "Học tập không bao giờ là muộn: Ngọc không mài không thành đồ vật, người không học không hiểu sự đời.",
-      "Phương châm rèn luyện: Giữ tâm trong sáng, giữ trí sắc bén, giữ lời thủy chung, giữ vững bản lĩnh người cán bộ.",
-      "Tình đồng chí, đồng môn K20A11: Đi một ngày đàng, học một sàng khôn; đi cùng nhau trọn khóa là thêm một nhịp cầu nghĩa tình.",
-      "Chúc bạn một ngày bình an: Mây lành theo gió tới, nắng ấm trải hiên nhà, công việc hanh thông, gia đình đầm ấm.",
-      "Tục ngữ Việt Nam: Có công mài sắt, có ngày nên kim.",
-      "Ca dao nghĩa tình: Bầu ơi thương lấy bí cùng, tuy rằng khác giống nhưng chung một giàn.",
-      "Tinh thần tập thể: Muốn đi nhanh hãy đi một mình, muốn đi xa hãy đi cùng đồng đội K20A11.",
-      "Lời nhắn nhủ mỗi ngày: Đọc kỹ để hiểu bản chất, suy ngẫm để thấy gốc rễ, hành động để tạo chuyển biến thực chất.",
-      "Chúc tập thể K20A11 luôn giữ vững ngọn lửa nhiệt huyết, học thật chất, thi đạt kết quả cao và gắn bó bền lâu!",
-      "Tục ngữ về sự học: Học thầy không tày học bạn.",
-      "Ca dao về sự gắn kết: Một con ngựa đau cả tàu bỏ cỏ.",
-      "Phương châm công tác: Gần dân để hiểu dân, lắng nghe để thấu đáo, trách nhiệm để việc gì cũng đến nơi đến chốn.",
-      "Chúc bạn buổi chiều an nhiên: Thư thái từng nhịp thở, vững vàng từng quyết định, trọn vẹn từng niềm vui nhỏ.",
-      "Tục ngữ: Ăn quả nhớ kẻ trồng cây.",
-      "Ca dao: Công cha như núi Thái Sơn, nghĩa mẹ như nước trong nguồn chảy ra.",
-      "Động lực học tập: Tri thức mở lối đi, bản lĩnh giữ vững tay chèo giữa mọi biến chuyển.",
-      "Chúc lớp K20A11 mỗi ngày lên lớp là một ngày thêm hứng khởi, thêm tri thức và thêm gắn kết!",
-      "Tục ngữ: Thuận vợ thuận chồng tát bể Đông cũng cạn.",
-      "Ca dao: Nhiễu điều phủ lấy giá gương, người trong một nước phải thương nhau cùng.",
-      "Phương châm sống: Sống chân thành, làm việc tận tâm, giữ chữ tín như giữ mắt mình.",
-      "Tinh thần vượt khó: Khó khăn là thước đo ý chí, thử thách là bệ phóng trưởng thành.",
-      "Tục ngữ: Non cao cũng có đường trèo, đường dù hiểm trở vẫn reo tới cùng.",
-      "Ca dao: Chim có tổ, người có tông; như cây có cội, như sông có nguồn.",
-      "Chúc bạn một tuần mới rạng rỡ: Đầu xuôi đuôi lọt, mọi kế hoạch đều chạm đích đúng kỳ vọng.",
-      "Tục ngữ: Thất bại là mẹ thành công.",
-      "Ca dao: Ai ơi bưng bát cơm đầy, dẻo thơm một hạt đắng cay muôn phần.",
-      "Giá trị học tập: Kiến thức tích lũy hôm nay là hành trang vững chắc cho chặng đường dài ngày mai.",
-      "Tình cảm đồng khóa: Xa mặt nhưng chẳng cách lòng, dù ở đâu vẫn tự hào hai tiếng K20A11.",
-      "Tục ngữ: Kiến tha lâu cũng đầy tổ.",
-      "Ca dao: Thương nhau mấy núi cũng trèo, mấy sông cũng lội, mấy đèo cũng qua.",
-      "Chúc bạn giữ mãi nụ cười hiền hòa, tinh thần lạc quan và sức khỏe dồi dào để gánh vác mọi trọng trách.",
-      "Tục ngữ: Uống nước nhớ nguồn.",
-      "Ca dao: Tre già măng mọc.",
-      "Tư duy đổi mới: Không ngừng học hỏi cái mới, trân trọng giá trị bền vững, làm việc bằng cả trái tim.",
-      "Chúc tập thể lớp K20A11 đoàn kết một lòng, sẻ chia từng bài giảng, cùng nhau tiến bước vững vàng!",
-      "Tục ngữ: Gần mực thì đen, gần đèn thì rạng.",
-      "Ca dao: Anh em như thể chân tay, rách lành đùm bọc, dở hay đỡ đần.",
-      "Phương châm: Nói đi đôi với làm, nghĩ chín chắn trước khi quyết định, làm đến cùng khi đã nhận lời.",
-      "Chúc buổi tối ấm áp: Gác lại bộn bề, nghỉ ngơi trọn vẹn để ngày mai đón nắng mới với năng lượng tràn đầy.",
-      "Tục ngữ: Chớ thấy sóng cả mà ngã tay chèo.",
-      "Ca dao: Giấy rách phải giữ lấy lề.",
-      "Sức mạnh đoàn kết: Đồng lòng thì tát cạn biển Đông, đồng tâm thì việc khó mấy cũng thành.",
-      "Chúc bạn luôn giữ được sự điềm tĩnh trước áp lực và sự ấm áp trong từng mối quan hệ.",
-      "Tục ngữ: Đi một ngày đàng, học một sàng khôn.",
-      "Ca dao: Dù ai nói ngả nói nghiêng, lòng ta vẫn vững như kiềng ba chân.",
-      "Hành trình tri thức: Mỗi trang sách mở ra là một góc nhìn sâu sắc hơn về cuộc sống và con người.",
-      "Chúc lớp K20A11 luôn rộn ràng tiếng cười, nghĩa tình sâu nặng và thành công nối tiếp thành công!",
-      "Tục ngữ: Có chí thì nên.",
-      "Ca dao: Đói cho sạch, rách cho thơm.",
-      "Văn hóa tập thể: Tôn trọng sự khác biệt, lắng nghe chân thành, cùng nhau vun đắp mái nhà chung K20A11.",
-      "Chúc bạn mỗi ngày đều có thêm một niềm vui nhỏ, một ý tưởng hay và một bước tiến đáng kể.",
-      "Tục ngữ: Tốt gỗ hơn tốt nước sơn.",
-      "Ca dao: Công ai gây dựng nên cơ đồ, ấy của cha ông để lại cho.",
-      "Bản lĩnh cán bộ: Giữ vững nguyên tắc, linh hoạt trong cách làm, gần gũi với thực tiễn địa phương.",
-      "Chúc cả lớp sức khỏe dồi dào, trí tuệ sáng suốt, hoàn thành xuất sắc mọi nhiệm vụ học tập và công tác!",
-      "Tục ngữ: Một miếng khi đói bằng một gói khi no.",
-      "Ca dao: Trăm năm trong cõi người ta, chữ tài chữ mệnh khéo là ghét nhau.",
-      "Niềm tin vào tương lai: Hạt giống tốt được chăm chút bằng tâm huyết chắc chắn sẽ trổ hoa thơm trái ngọt.",
-      "Tục ngữ: Đánh kẻ chạy đi, không ai đánh người chạy lại.",
-      "Ca dao: Quê hương là chùm khế ngọt, cho con trèo hái mỗi ngày.",
-      "Sự kiên nhẫn: Mưa dầm thấm lâu, đi chậm mà chắc vẫn hơn vội vàng mà đứt gánh.",
-      "Chúc bạn một ngày tràn đầy cảm hứng, công việc suôn sẻ và những cuộc gặp gỡ chân tình.",
-      "Tục ngữ: Lời nói chẳng mất tiền mua, lựa lời mà nói cho vừa lòng nhau.",
-      "Ca dao: Tháp Mười đẹp nhất bông sen, Việt Nam đẹp nhất có tên Bác Hồ.",
-      "Tinh thần học suốt đời: Hôm nay hiểu thêm một chút, ngày mai vững vàng hơn một bậc.",
-      "Chúc tập thể K20A11 mãi là điểm tựa tinh thần, nơi chia sẻ kinh nghiệm và lan tỏa điều tốt đẹp!",
-      "Tục ngữ: Trong đầm gì đẹp bằng sen.",
-      "Ca dao: Đường vô xứ Nghệ quanh quanh, non xanh nước biếc như tranh họa đồ.",
-      "Trách nhiệm và sẻ chia: Chia nhau một phần vất vả là nhân đôi niềm vui cho tập thể.",
-      "Chúc bạn ngủ ngon, thức dậy với tâm thế an vui và sẵn sàng cho những hành trình ý nghĩa.",
-      "Tục ngữ: Biết người biết ta, trăm trận trăm thắng.",
-      "Ca dao: Đồng Đăng có phố Kỳ Lừa, có nàng Tô Thị, có chùa Tam Thanh.",
-      "Vững vàng lý tưởng: Giữ ngọn đèn trí thức sáng mãi, soi đường cho từng bước đi thực tiễn.",
-      "Chúc lớp K20A11 đoàn kết - kỷ cương - sáng tạo - nghĩa tình, lưu giữ thật nhiều kỷ niệm đẹp!",
-      "Tục ngữ: Cái nết đánh chết cái đẹp.",
-      "Ca dao: Ruộng sâu trâu nái không bằng con gái đầu lòng.",
-      "Sự khiêm tốn: Càng hiểu sâu càng thấy mình cần học hỏi nhiều hơn nữa.",
-      "Chúc bạn bình tâm trước mọi sóng gió, vững tin vào con đường mình đã chọn.",
-      "Tục ngữ: Một sự nhịn là chín sự lành.",
-      "Ca dao: Cày đồng đang buổi ban trưa, mồ hôi thánh thót như mưa ruộng cày.",
-      "Gắn kết đồng môn: Hôm nay cùng ngồi chung giảng đường, mai sau cùng tự hào về chặng đường K20A11.",
-      "Tục ngữ: Thương người như thể thương thân.",
-      "Ca dao: Ơn trời mưa nắng phải thì, nơi thì bừa cạn, nơi thì cày sâu.",
-      "Chúc bạn một ngày nhiều năng lượng tích cực, giải quyết gọn mọi đầu việc và giữ trọn niềm vui!",
-      "Tục ngữ: Học, học nữa, học mãi.",
-      "Ca dao: Hoa thơm quả ngọt bốn mùa, tình yêu thương mến chẳng thua ai nào.",
-      "Khép lại một ngày ý nghĩa: Biết ơn những gì đã trải qua và hướng tới ngày mai tốt đẹp hơn cho lớp K20A11!"
-    ];
-
-    let appData = structuredClone(DEFAULT_DATA);
-    let isAdminLoggedIn = false;
-    let lotusWishIndex = 0;
-    let lotusSoundEnabled = true;
-    let lastLotusOutputText = "";
-
-    function showToast(message) {
-      const el = document.getElementById("toastBanner");
-      el.textContent = message;
-      el.style.display = "block";
-      clearTimeout(window.__toastTimer);
-      window.__toastTimer = setTimeout(() => {
-        el.style.display = "none";
-      }, 3600);
-    }
-
-    function setSyncStatus(state, text) {
-      const dot = document.getElementById("syncDot");
-      const label = document.getElementById("syncStatusText");
-      label.textContent = text;
-      if (state === "ok") {
-        dot.className = "w-2 h-2 rounded-full bg-emerald-400";
-      } else if (state === "error") {
-        dot.className = "w-2 h-2 rounded-full bg-rose-400";
-      } else {
-        dot.className = "w-2 h-2 rounded-full bg-amber-400";
+function getInitialData() {
+  return {
+    meta: {
+      className: 'K20A11',
+      courseName: 'Cao cấp lý luận chính trị',
+      academy: 'Học viện Chính trị khu vực IV',
+      cohort: '2026 – 2027',
+      firebaseUrl: DEFAULT_FIREBASE_URL,
+      lastSyncedAt: ''
+    },
+    members: [
+      { id: 'hv1', name: 'Nguyễn Văn Minh', roleType: 'BCP', position: 'Lớp trưởng', unit: 'Sở Kế hoạch và Đầu tư', phone: '0918 220 101', email: 'minh.nv@k20a11.edu.vn', avatar: '' },
+      { id: 'hv2', name: 'Trần Thị Thu Hà', roleType: 'BCP', position: 'Lớp phó học tập', unit: 'Ban Tuyên giáo Tỉnh ủy', phone: '0918 220 102', email: 'ha.ttt@k20a11.edu.vn', avatar: '' },
+      { id: 'hv3', name: 'Lê Hoàng Nam', roleType: 'BCP', position: 'Lớp phó đời sống', unit: 'UBND Quận Ninh Kiều', phone: '0918 220 103', email: 'nam.lh@k20a11.edu.vn', avatar: '' },
+      { id: 'hv4', name: 'Phạm Quốc Bảo', roleType: 'HV', position: 'Học viên', unit: 'Công an thành phố', phone: '0918 220 104', email: 'bao.pq@k20a11.edu.vn', avatar: '' },
+      { id: 'hv5', name: 'Đặng Ngọc Mai', roleType: 'HV', position: 'Học viên', unit: 'Sở Tài chính', phone: '0918 220 105', email: 'mai.dn@k20a11.edu.vn', avatar: '' },
+      { id: 'hv6', name: 'Võ Thanh Tùng', roleType: 'HV', position: 'Học viên', unit: 'Huyện ủy Phong Điền', phone: '0918 220 106', email: 'tung.vt@k20a11.edu.vn', avatar: '' }
+    ],
+    schedules: [
+      { id: 'sc1', date: '2026-11-21', title: 'Chuyên đề 1: Những vấn đề cốt lõi của chủ nghĩa Mác – Lênin trong giai đoạn hiện nay', lecturer: 'PGS.TS. Nguyễn Hữu Thành', location: 'Hội trường A2 – HVCT KV IV', status: 'Đang học', note: 'Mang theo đề cương và tài liệu dẫn chiếu.' },
+      { id: 'sc2', date: '2026-11-28', title: 'Chuyên đề 2: Tư tưởng Hồ Chí Minh về xây dựng Đảng cầm quyền trong sạch, vững mạnh', lecturer: 'TS. Trần Minh Phương', location: 'Hội trường A2 – HVCT KV IV', status: 'Sắp diễn ra', note: 'Thảo luận nhóm theo tổ học tập.' },
+      { id: 'sc3', date: '2026-12-05', title: 'Nghiên cứu thực tế & Tọa đàm chuyển đổi số trong quản lý nhà nước ở cơ sở', lecturer: 'Ban Chỉ đạo lớp & Giảng viên', location: 'Đơn vị thực tế tại Cần Thơ', status: 'Sắp diễn ra', note: 'Trang phục chỉnh tề, mang sổ ghi chép.' }
+    ],
+    exams: [
+      { id: 'ex1', date: '2026-12-12', subject: 'Triết học Mác – Lênin', format: 'Thi viết tập trung (120 phút)', room: 'Phòng thi B1', note: 'Không sử dụng tài liệu; có mặt trước giờ thi 20 phút.' },
+      { id: 'ex2', date: '2026-12-22', subject: 'Kinh tế chính trị Mác – Lênin', format: 'Tiểu luận / Bài thu hoạch', room: 'Nộp trực tuyến & Bản cứng cho Lớp phó học tập', note: 'Độ dài 12–15 trang A4, font Times New Roman 14.' }
+    ],
+    notices: [
+      { id: 'nt1', date: '2026-11-18', category: 'Học tập & Thi', title: 'Phân công tổ thảo luận chuyên đề tháng 11/2026', content: 'Ban cán sự đã gửi danh sách 4 tổ thảo luận. Các tổ chủ động họp chuẩn bị ý kiến phát biểu gắn với thực tiễn công tác của từng học viên.', pinned: true },
+      { id: 'nt2', date: '2026-11-15', category: 'Hành chính', title: 'Hoàn thiện hồ sơ & ảnh thẻ phục vụ quản lý học viên khóa 2026 – 2027', content: 'Học viên chưa bổ sung đầy đủ thông tin đơn vị công tác hoặc số điện thoại vui lòng cập nhật trực tiếp trên cổng thông tin lớp.', pinned: false },
+      { id: 'nt3', date: '2026-11-10', category: 'Sinh hoạt lớp', title: 'Sinh hoạt tập thể lớp K20A11 & thống nhất quỹ hoạt động', content: 'Thống nhất phương án hỗ trợ các chuyến nghiên cứu thực tế và hoạt động nghĩa tình của tập thể lớp.', pinned: false }
+    ],
+    docs: [
+      { id: 'dc1', title: 'Đề cương môn Triết học Mác – Lênin (K20A11)', category: 'Đề cương', url: '', summary: 'Hệ thống câu hỏi trọng tâm, tài liệu bắt buộc và hướng dẫn làm bài tiểu luận cuối môn.', contentText: 'Đề cương môn Triết học Mác – Lênin:\n1. Phép biện chứng duy vật và phương pháp luận nhận thức, thực tiễn.\n2. Quy luật quan hệ sản xuất phù hợp với trình độ phát triển của lực lượng sản xuất.\n3. Vận dụng quan điểm toàn diện, lịch sử – cụ thể trong lãnh đạo, quản lý.' },
+      { id: 'dc2', title: 'Tài liệu hướng dẫn viết tiểu luận Cao cấp lý luận chính trị', category: 'Hướng dẫn', url: '', summary: 'Quy chuẩn trình bày, cấu trúc mở bài – nội dung – kết luận và trích dẫn nguồn tài liệu chính thống.', contentText: 'Hướng dẫn trình bày tiểu luận:\n- Đặt vấn đề rõ ràng, bám sát thực tiễn.\n- Lập luận chặt chẽ, kết hợp lý luận với số liệu, mô hình thực tiễn.\n- Kết luận khái quát, có tính đề xuất, kiến nghị khả thi.' }
+    ],
+    gallery: [
+      {
+        id: 'ph1',
+        title: 'Khai giảng khóa học K20A11',
+        date: '2026-10-15',
+        caption: 'Tập thể lớp K20A11 chụp ảnh lưu niệm tại Học viện Chính trị khu vực IV.',
+        imageData: 'data:image/svg+xml;utf8,' + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#8f1d24"/><stop offset="100%" stop-color="#4e0c11"/></linearGradient></defs><rect width="800" height="500" fill="url(#g)"/><circle cx="400" cy="195" r="72" fill="#f6e7be" opacity="0.22"/><text x="400" y="210" text-anchor="middle" fill="#f6e7be" font-family="Arial, sans-serif" font-size="38" font-weight="bold">K20A11</text><text x="400" y="265" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="22">HỌC VIỆN CHÍNH TRỊ KHU VỰC IV</text><text x="400" y="302" text-anchor="middle" fill="#f6e7be" font-family="Arial, sans-serif" font-size="16">Cao cấp lý luận chính trị • Khóa 2026 – 2027</text></svg>`)
       }
-    }
-
-    async function sha256Hex(text) {
-      const buf = new TextEncoder().encode(text);
-      const hashBuf = await crypto.subtle.digest("SHA-256", buf);
-      return Array.from(new Uint8Array(hashBuf))
-        .map((b) => b.toString(16).padStart(2, "0"))
-        .join("");
-    }
-
-    function saveLocalBackup(dataObj) {
-      try {
-        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(dataObj));
-      } catch (e) {
-        console.warn("LocalStorage warning:", e);
+    ],
+    aiMessages: [
+      {
+        role: 'bot',
+        text: 'Xin chào tập thể lớp K20A11! Mình là Trợ lý Tiểu Hoa Sen.\nMình có thể hỗ trợ bạn:\n• Soạn bài, lập dàn ý chuyên đề và dự thảo bài phát biểu\n• Giải đề, phân tích sâu các vấn đề lý luận chính trị gắn với thực tiễn\n• Chấm bài, góp ý bố cục, lập luận và chấm điểm tham khảo\n• Hệ thống hóa kiến thức ôn tập và xuất kết quả ra tệp .docx'
       }
-    }
+    ]
+  };
+}
 
-    function loadLocalBackup() {
-      try {
-        const raw = localStorage.getItem(LOCAL_STORAGE_KEY);
-        if (!raw) return null;
-        return JSON.parse(raw);
-      } catch (e) {
-        return null;
-      }
-    }
+let state = loadState();
+let memberViewMode = 'cards';
+let activeNoticeCat = 'ALL';
+let aiAttachments = [];
+let lastAiMarkdown = '';
 
-    function mergeWithDefaults(remoteObj) {
-      const merged = structuredClone(DEFAULT_DATA);
-      if (remoteObj && typeof remoteObj === "object") {
-        Object.assign(merged, remoteObj);
-        if (!merged.heroImage) merged.heroImage = DEFAULT_HERO_SVG;
-        if (!Array.isArray(merged.announcements)) merged.announcements = DEFAULT_DATA.announcements;
-        if (!Array.isArray(merged.students)) merged.students = DEFAULT_DATA.students;
-        if (!Array.isArray(merged.subjects)) merged.subjects = DEFAULT_DATA.subjects;
-        if (!Array.isArray(merged.scheduleItems)) merged.scheduleItems = DEFAULT_DATA.scheduleItems;
-        if (!Array.isArray(merged.albums)) merged.albums = DEFAULT_DATA.albums;
-        if (!Array.isArray(merged.shareDocs)) merged.shareDocs = DEFAULT_DATA.shareDocs;
-        if (!Array.isArray(merged.contacts)) merged.contacts = DEFAULT_DATA.contacts;
+function loadState() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return getInitialData();
+    const parsed = JSON.parse(raw);
+    const base = getInitialData();
+    return {
+      ...base,
+      ...parsed,
+      meta: {
+        ...base.meta,
+        ...(parsed.meta || {}),
+        firebaseUrl: DEFAULT_FIREBASE_URL
       }
-      return merged;
-    }
+    };
+  } catch (e) {
+    return getInitialData();
+  }
+}
 
-    async function pushToFirebase(dataObj) {
-      saveLocalBackup(dataObj);
-      setSyncStatus("syncing", "Đang đồng bộ Firebase...");
-      try {
-        const res = await fetch(FIREBASE_DB_URL, {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(dataObj)
-        });
-        if (!res.ok) throw new Error("HTTP " + res.status);
-        setSyncStatus("ok", "Đã đồng bộ đám mây Firebase");
-        return true;
-      } catch (err) {
-        setSyncStatus("error", "Chế độ cục bộ (Lỗi đẩy Firebase)");
-        showToast("Lỗi khi đẩy lên Firebase (tệp quá lớn hoặc mất mạng). Dữ liệu vẫn được lưu trên trình duyệt!");
-        return false;
-      }
-    }
+function saveState(skipCloud = false) {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  } catch (e) {
+    showToast('Bộ nhớ trình duyệt đang đầy, hãy xóa bớt ảnh hoặc xuất bản sao lưu.');
+  }
+  renderAll();
+  if (!skipCloud && state.meta.firebaseUrl) {
+    syncPushFirebase(true);
+  }
+}
 
-    async function syncFromFirebase(showNotify = false) {
-      setSyncStatus("syncing", "Đang tải dữ liệu Firebase...");
-      const localData = loadLocalBackup();
-      if (localData) {
-        appData = mergeWithDefaults(localData);
-        renderAll();
+function setSyncPill(mode, text) {
+  const pill = document.getElementById('syncPill');
+  pill.className = 'sync-pill ' + mode;
+  pill.querySelector('.sync-label').textContent = text;
+  const box = document.getElementById('syncStatusBox');
+  if (box) box.textContent = text + (state.meta.lastSyncedAt ? ' • Cập nhật: ' + state.meta.lastSyncedAt : '');
+}
+
+async function syncPushFirebase(silent = false) {
+  const url = (document.getElementById('firebaseUrlInput')?.value || state.meta.firebaseUrl || DEFAULT_FIREBASE_URL).trim();
+  if (!url) return;
+  state.meta.firebaseUrl = url;
+  setSyncPill('syncing', 'Đang đồng bộ...');
+  try {
+    const payload = {
+      ...state,
+      meta: {
+        ...state.meta,
+        lastSyncedAt: new Date().toLocaleString('vi-VN')
       }
-      try {
-        const res = await fetch(FIREBASE_DB_URL + "?t=" + Date.now());
-        if (!res.ok) throw new Error("HTTP " + res.status);
-        const remoteData = await res.json();
-        if (remoteData && typeof remoteData === "object") {
-          appData = mergeWithDefaults(remoteData);
-          saveLocalBackup(appData);
-          renderAll();
-          setSyncStatus("ok", "Đã đồng bộ đám mây Firebase");
-          if (showNotify) showToast("Đã cập nhật dữ liệu mới nhất từ Firebase!");
-        } else {
-          appData = mergeWithDefaults(localData);
-          if (!appData.adminPassHash) {
-            appData.adminPassHash = await sha256Hex(DEFAULT_PASS_PLAIN);
-          }
-          renderAll();
-          setSyncStatus("ok", "Sẵn sàng kết nối Firebase");
-          if (showNotify) showToast("Đã kết nối cơ sở dữ liệu Firebase của lớp K20A11.");
+    };
+    const res = await fetch(url, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    state.meta.lastSyncedAt = payload.meta.lastSyncedAt;
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    setSyncPill('ok', 'Đã đồng bộ');
+    if (!silent) showToast('Đã đẩy dữ liệu lớp lên Firebase thành công.');
+  } catch (err) {
+    setSyncPill('err', 'Lỗi đồng bộ');
+    if (!silent) showToast('Không thể đồng bộ lên Firebase: ' + err.message);
+  }
+}
+
+async function syncPullFirebase(silent = false) {
+  const url = (document.getElementById('firebaseUrlInput')?.value || state.meta.firebaseUrl || DEFAULT_FIREBASE_URL).trim();
+  if (!url) return;
+  state.meta.firebaseUrl = url;
+  setSyncPill('syncing', 'Đang tải...');
+  try {
+    const res = await fetch(url);
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const data = await res.json();
+    if (data && typeof data === 'object') {
+      const base = getInitialData();
+      state = {
+        ...base,
+        ...data,
+        meta: {
+          ...base.meta,
+          ...(data.meta || {}),
+          firebaseUrl: DEFAULT_FIREBASE_URL,
+          lastSyncedAt: new Date().toLocaleString('vi-VN')
         }
-      } catch (err) {
-        appData = mergeWithDefaults(localData);
-        if (!appData.adminPassHash) {
-          appData.adminPassHash = await sha256Hex(DEFAULT_PASS_PLAIN);
-        }
-        renderAll();
-        setSyncStatus("error", "Chế độ cục bộ (Mất kết nối Firebase)");
-        if (showNotify) showToast("Đang hiển thị dữ liệu cục bộ trên trình duyệt.");
-      }
-    }
-
-    function requireAdmin() {
-      if (!isAdminLoggedIn) {
-        showToast("Vui lòng đăng nhập Quản trị (ID: K20a11) để chỉnh sửa nội dung.");
-        openAdminModal();
-        return false;
-      }
-      return true;
-    }
-
-    function openAdminModal() {
-      document.getElementById("adminLoginModal").classList.remove("hidden");
-      document.getElementById("adminPassInput").focus();
-    }
-
-    function closeAdminModal() {
-      document.getElementById("adminLoginModal").classList.add("hidden");
-      document.getElementById("adminPassInput").value = "";
-    }
-
-    async function submitAdminLogin() {
-      const idVal = document.getElementById("adminIdInput").value.trim();
-      const passVal = document.getElementById("adminPassInput").value;
-      if (!appData.adminPassHash) {
-        appData.adminPassHash = await sha256Hex(DEFAULT_PASS_PLAIN);
-      }
-      const inputHash = await sha256Hex(passVal);
-      if (idVal === ADMIN_ID_EXPECTED && inputHash === appData.adminPassHash) {
-        isAdminLoggedIn = true;
-        closeAdminModal();
-        updateAdminUI();
-        renderAll();
-        showToast("Đăng nhập Quản trị K20A11 thành công!");
-      } else {
-        showToast("Sai ID hoặc mật khẩu quản trị.");
-      }
-    }
-
-    function logoutAdmin() {
-      isAdminLoggedIn = false;
-      updateAdminUI();
+      };
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
       renderAll();
-      showToast("Đã đăng xuất chế độ quản trị.");
+      setSyncPill('ok', 'Đã đồng bộ');
+      if (!silent) showToast('Đã tải dữ liệu mới nhất từ Firebase.');
+    } else {
+      setSyncPill('ok', 'Dữ liệu trống');
+      if (!silent) showToast('Firebase chưa có dữ liệu, bạn có thể bấm Đẩy dữ liệu lên.');
     }
+  } catch (err) {
+    setSyncPill('err', 'Lỗi tải');
+    if (!silent) showToast('Không thể tải dữ liệu từ Firebase: ' + err.message);
+  }
+}
 
-    function updateAdminUI() {
-      document.getElementById("adminGuestControls").classList.toggle("hidden", isAdminLoggedIn);
-      document.getElementById("adminActiveControls").classList.toggle("hidden", !isAdminLoggedIn);
-      document.getElementById("adminActiveControls").classList.toggle("flex", isAdminLoggedIn);
+/* Navigation */
+function navigateTo(viewName) {
+  document.querySelectorAll('.view-section').forEach(sec => sec.classList.remove('active'));
+  const target = document.getElementById('view-' + viewName) || document.getElementById('view-home');
+  target.classList.add('active');
 
-      const showIds = ["btnAddAnnouncement", "btnAddStudent", "btnAddSubject", "scheduleAdminActions", "btnAddAlbum", "btnAddShareDoc", "btnAddContact"];
-      showIds.forEach((id) => {
-        const el = document.getElementById(id);
-        if (el) el.classList.toggle("hidden", !isAdminLoggedIn);
-      });
-    }
+  document.querySelectorAll('.nav-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.nav === viewName);
+  });
 
-    function openChangePasswordModal() {
-      if (!requireAdmin()) return;
-      document.getElementById("changePasswordModal").classList.remove("hidden");
-    }
+  document.getElementById('mobileDrawer').classList.remove('open');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  if (window.lucide) lucide.createIcons();
+}
 
-    function closeChangePasswordModal() {
-      document.getElementById("changePasswordModal").classList.add("hidden");
-      ["oldPassInput", "newPassInput", "confirmPassInput"].forEach((id) => {
-        document.getElementById(id).value = "";
-      });
-    }
+document.querySelectorAll('[data-nav]').forEach(el => {
+  el.addEventListener('click', (e) => {
+    if (el.tagName === 'A') e.preventDefault();
+    navigateTo(el.dataset.nav);
+  });
+});
 
-    async function submitChangePassword() {
-      const oldPass = document.getElementById("oldPassInput").value;
-      const newPass = document.getElementById("newPassInput").value;
-      const confirmPass = document.getElementById("confirmPassInput").value;
-      const oldHash = await sha256Hex(oldPass);
-      if (oldHash !== appData.adminPassHash) {
-        showToast("Mật khẩu hiện tại không đúng.");
-        return;
-      }
-      if (!newPass || newPass.length < 6) {
-        showToast("Mật khẩu mới nên có ít nhất 6 ký tự.");
-        return;
-      }
-      if (newPass !== confirmPass) {
-        showToast("Xác nhận mật khẩu mới chưa khớp.");
-        return;
-      }
-      appData.adminPassHash = await sha256Hex(newPass);
-      await pushToFirebase(appData);
-      closeChangePasswordModal();
-      showToast("Đã đổi mật khẩu quản trị thành công!");
-    }
+document.getElementById('hamburgerBtn').addEventListener('click', () => {
+  document.getElementById('mobileDrawer').classList.toggle('open');
+});
 
-    function switchTab(tabName) {
-      document.querySelectorAll(".tab-panel").forEach((panel) => {
-        panel.classList.toggle("hidden", panel.id !== "tab-" + tabName);
-      });
-      document.querySelectorAll(".nav-btn").forEach((btn) => {
-        const active = btn.dataset.tab === tabName;
-        btn.className = active
-          ? "nav-btn px-3.5 py-2 rounded-xl text-sm font-semibold bg-red-800 text-white shadow-sm"
-          : "nav-btn px-3.5 py-2 rounded-xl text-sm font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700";
-      });
-    }
+document.getElementById('fabAiBtn').addEventListener('click', () => navigateTo('ai'));
 
-    // Nén ảnh thông minh trên trình duyệt trước khi lưu để tránh quá tải Firebase
-    function compressImageFile(file, maxWidth = 1200, quality = 0.76) {
-      return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = (ev) => {
-          const img = new Image();
-          img.onload = () => {
-            let width = img.width;
-            let height = img.height;
-            if (width > maxWidth) {
-              height = Math.round((height * maxWidth) / width);
-              width = maxWidth;
-            }
-            const canvas = document.createElement("canvas");
-            canvas.width = width;
-            canvas.height = height;
-            const ctx = canvas.getContext("2d");
-            ctx.drawImage(img, 0, 0, width, height);
-            const dataUrl = canvas.toDataURL("image/jpeg", quality);
-            resolve(dataUrl);
-          };
-          img.onerror = reject;
-          img.src = ev.target.result;
-        };
-        reader.onerror = reject;
-        reader.readAsDataURL(file);
-      });
-    }
+/* Modal helpers */
+const modalBackdrop = document.getElementById('modalBackdrop');
+const modalTitle = document.getElementById('modalTitle');
+const modalBody = document.getElementById('modalBody');
+const modalFoot = document.getElementById('modalFoot');
 
-    function readFileAsDataUrl(file) {
-      return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = () => resolve(reader.result);
-        reader.onerror = reject;
-        reader.readAsDataURL(file);
-      });
-    }
+function openModal({ title, bodyHtml, footHtml = '' }) {
+  modalTitle.textContent = title;
+  modalBody.innerHTML = bodyHtml;
+  modalFoot.innerHTML = footHtml || `<button class="btn btn-outline btn-sm" onclick="closeModal()">Đóng</button>`;
+  modalBackdrop.classList.add('open');
+  if (window.lucide) lucide.createIcons();
+}
 
-    function openImageModal(src) {
-      document.getElementById("previewModalImg").src = src;
-      document.getElementById("imagePreviewModal").classList.remove("hidden");
-    }
+function closeModal() {
+  modalBackdrop.classList.remove('open');
+}
 
-    // Render giao diện
-    function renderAll() {
-      renderHome();
-      renderStudents();
-      renderSubjects();
-      renderSchedule();
-      renderGallery();
-      renderShareDocs();
-      renderContacts();
-      updateAdminUI();
-    }
+document.getElementById('modalCloseBtn').addEventListener('click', closeModal);
+modalBackdrop.addEventListener('click', (e) => { if (e.target === modalBackdrop) closeModal(); });
 
-    function renderHome() {
-      document.getElementById("heroMainImage").src = appData.heroImage || DEFAULT_HERO_SVG;
-      document.getElementById("heroCaptionText").textContent = appData.heroCaption || "";
-      const listEl = document.getElementById("announcementsList");
-      listEl.innerHTML = appData.announcements
-        .map(
-          (item, idx) => `
-          <div class="p-4 rounded-2xl bg-amber-50/60 border border-amber-200/80 flex items-start justify-between gap-3">
-            <div>
-              <div class="text-xs font-bold text-amber-800">${escapeHtml(item.date || "")}</div>
-              <div class="font-bold text-slate-900 text-base">${escapeHtml(item.title || "")}</div>
-              <p class="text-sm text-slate-700 mt-1 whitespace-pre-line">${escapeHtml(item.content || "")}</p>
-            </div>
-            ${
-              isAdminLoggedIn
-                ? `<button onclick="deleteAnnouncement(${idx})" class="px-2.5 py-1 rounded-lg bg-rose-100 hover:bg-rose-200 text-rose-800 text-xs font-bold shrink-0">Xóa</button>`
-                : ""
-            }
-          </div>`
-        )
-        .join("");
-    }
+const lightboxBackdrop = document.getElementById('lightboxBackdrop');
+function openLightbox(src, title, caption) {
+  document.getElementById('lightboxImg').src = src;
+  document.getElementById('lightboxTitle').textContent = title || 'Ảnh kỷ niệm';
+  document.getElementById('lightboxCaption').textContent = caption || '';
+  lightboxBackdrop.classList.add('open');
+}
+document.getElementById('lightboxCloseBtn').addEventListener('click', () => lightboxBackdrop.classList.remove('open'));
+lightboxBackdrop.addEventListener('click', (e) => { if (e.target === lightboxBackdrop) lightboxBackdrop.classList.remove('open'); });
 
-    async function addAnnouncement() {
-      if (!requireAdmin()) return;
-      const title = prompt("Nhập tiêu đề thông báo:");
-      if (!title) return;
-      const content = prompt("Nhập nội dung thông báo:") || "";
-      const date = prompt("Nhập ngày/thời gian:", new Date().toLocaleDateString("vi-VN")) || "";
-      appData.announcements.unshift({ id: "ann-" + Date.now(), title, content, date });
-      renderHome();
-      await pushToFirebase(appData);
-    }
+/* Renderers */
+function renderHome() {
+  const bcsCount = state.members.filter(m => m.roleType === 'BCP').length;
+  const doneSchedule = state.schedules.filter(s => s.status === 'Đã hoàn thành').length;
 
-    async function deleteAnnouncement(idx) {
-      if (!requireAdmin()) return;
-      appData.announcements.splice(idx, 1);
-      renderHome();
-      await pushToFirebase(appData);
-    }
+  document.getElementById('homeStats').innerHTML = `
+    <div class="stat-card">
+      <div>
+        <div class="stat-label">Sĩ số học viên</div>
+        <div class="stat-value">${state.members.length}</div>
+        <div class="stat-sub">${bcsCount} Ban cán sự lớp</div>
+      </div>
+      <div class="stat-icon"><i data-lucide="users" size="21"></i></div>
+    </div>
+    <div class="stat-card">
+      <div>
+        <div class="stat-label">Chuyên đề / Buổi học</div>
+        <div class="stat-value">${state.schedules.length}</div>
+        <div class="stat-sub">${doneSchedule} đã hoàn thành</div>
+      </div>
+      <div class="stat-icon"><i data-lucide="calendar-days" size="21"></i></div>
+    </div>
+    <div class="stat-card">
+      <div>
+        <div class="stat-label">Kỳ thi / Thu hoạch</div>
+        <div class="stat-value">${state.exams.length}</div>
+        <div class="stat-sub">Theo kế hoạch đào tạo</div>
+      </div>
+      <div class="stat-icon"><i data-lucide="clipboard-check" size="21"></i></div>
+    </div>
+    <div class="stat-card">
+      <div>
+        <div class="stat-label">Tài liệu &amp; Ảnh lớp</div>
+        <div class="stat-value">${state.docs.length + state.gallery.length}</div>
+        <div class="stat-sub">${state.docs.length} tài liệu • ${state.gallery.length} ảnh</div>
+      </div>
+      <div class="stat-icon"><i data-lucide="library" size="21"></i></div>
+    </div>
+  `;
 
-    function renderStudents() {
-      const grid = document.getElementById("studentsGrid");
-      grid.innerHTML = appData.students
-        .map(
-          (st, idx) => `
-          <div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-xs flex items-start justify-between gap-2">
-            <div>
-              <div class="font-bold text-slate-900">${idx + 1}. ${escapeHtml(st.name || "")}</div>
-              <div class="text-xs font-semibold text-red-800 mt-0.5">${escapeHtml(st.role || "Học viên")}</div>
-              <div class="text-xs text-slate-600 mt-1">${escapeHtml(st.unit || "")}</div>
-            </div>
-            ${
-              isAdminLoggedIn
-                ? `<button onclick="deleteStudent(${idx})" class="px-2.5 py-1 rounded-lg bg-rose-100 hover:bg-rose-200 text-rose-800 text-xs font-bold">Xóa</button>`
-                : ""
-            }
-          </div>`
-        )
-        .join("");
-    }
+  const sortedNotices = [...state.notices].sort((a, b) => (b.pinned ? 1 : 0) - (a.pinned ? 1 : 0) || b.date.localeCompare(a.date)).slice(0, 3);
+  document.getElementById('homeNotices').innerHTML = sortedNotices.length ? sortedNotices.map(n => `
+    <div style="padding:11px 13px;border-radius:12px;border:1px solid var(--line);background:#fdfbf8;">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:4px;">
+        <span class="badge ${n.pinned ? 'badge-crimson' : ''}">${n.pinned ? 'Ghim • ' : ''}${escapeHtml(n.category)}</span>
+        <span style="font-size:11.5px;color:var(--muted);">${formatDateVi(n.date)}</span>
+      </div>
+      <div style="font-weight:700;font-size:14px;">${escapeHtml(n.title)}</div>
+      <div style="font-size:12.5px;color:var(--ink-2);margin-top:3px;">${escapeHtml(n.content)}</div>
+    </div>
+  `).join('') : `<div class="empty-state">Chưa có thông báo nào.</div>`;
 
-    async function addStudent() {
-      if (!requireAdmin()) return;
-      const name = prompt("Nhập họ và tên học viên:");
-      if (!name) return;
-      const role = prompt("Nhập chức vụ / vai trò trong lớp:", "Học viên") || "Học viên";
-      const unit = prompt("Nhập cơ quan / đơn vị công tác:", "") || "";
-      appData.students.push({ id: "hv-" + Date.now(), name, role, unit });
-      renderStudents();
-      await pushToFirebase(appData);
-    }
+  const upcomingItems = [
+    ...state.schedules.filter(s => s.status !== 'Đã hoàn thành').map(s => ({ type: 'Học tập', date: s.date, title: s.title, sub: s.location })),
+    ...state.exams.map(e => ({ type: 'Lịch thi', date: e.date, title: e.subject, sub: e.format }))
+  ].sort((a, b) => a.date.localeCompare(b.date)).slice(0, 4);
 
-    async function deleteStudent(idx) {
-      if (!requireAdmin()) return;
-      appData.students.splice(idx, 1);
-      renderStudents();
-      await pushToFirebase(appData);
-    }
+  document.getElementById('homeUpcoming').innerHTML = upcomingItems.length ? upcomingItems.map(item => `
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 12px;border-radius:12px;border:1px solid var(--line);background:#fdfbf8;">
+      <div style="min-width:0;">
+        <span class="badge ${item.type === 'Lịch thi' ? 'badge-warn' : 'badge-crimson'}" style="margin-bottom:4px;">${item.type}</span>
+        <div style="font-weight:700;font-size:13.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${escapeHtml(item.title)}</div>
+        <div style="font-size:12px;color:var(--muted);">${escapeHtml(item.sub)}</div>
+      </div>
+      <div class="badge" style="flex-shrink:0;">${formatDateVi(item.date)}</div>
+    </div>
+  `).join('') : `<div class="empty-state">Chưa có lịch sắp tới.</div>`;
+}
 
-    function renderSubjects() {
-      const el = document.getElementById("subjectsList");
-      el.innerHTML = appData.subjects
-        .map(
-          (sub, idx) => `
-          <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex items-start justify-between gap-3">
-            <div>
-              <div class="font-bold text-blue-950 text-base">${escapeHtml(sub.name || "")}</div>
-              <p class="text-sm text-slate-700 mt-1">${escapeHtml(sub.note || "")}</p>
-            </div>
-            ${
-              isAdminLoggedIn
-                ? `<button onclick="deleteSubject(${idx})" class="px-2.5 py-1 rounded-lg bg-rose-100 hover:bg-rose-200 text-rose-800 text-xs font-bold">Xóa</button>`
-                : ""
-            }
-          </div>`
-        )
-        .join("");
-    }
+function getInitials(name = '') {
+  const parts = name.trim().split(/\s+/);
+  if (!parts.length) return 'HV';
+  if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
+  return (parts[parts.length - 2][0] + parts[parts.length - 1][0]).toUpperCase();
+}
 
-    async function addSubject() {
-      if (!requireAdmin()) return;
-      const name = prompt("Nhập tên môn học / chuyên đề:");
-      if (!name) return;
-      const note = prompt("Nhập ghi chú / tài liệu học tập:") || "";
-      appData.subjects.push({ id: "sub-" + Date.now(), name, note });
-      renderSubjects();
-      await pushToFirebase(appData);
-    }
+function renderMembers() {
+  const q = (document.getElementById('memberSearch')?.value || '').trim().toLowerCase();
+  const roleFilter = document.getElementById('memberRoleFilter')?.value || 'ALL';
 
-    async function deleteSubject(idx) {
-      if (!requireAdmin()) return;
-      appData.subjects.splice(idx, 1);
-      renderSubjects();
-      await pushToFirebase(appData);
-    }
+  const list = state.members.filter(m => {
+    const matchRole = roleFilter === 'ALL' || m.roleType === roleFilter;
+    const hay = `${m.name} ${m.position} ${m.unit} ${m.phone} ${m.email}`.toLowerCase();
+    return matchRole && (!q || hay.includes(q));
+  });
 
-    function renderSchedule() {
-      const el = document.getElementById("scheduleList");
-      el.innerHTML = appData.scheduleItems
-        .map(
-          (item, idx) => `
-          <div class="p-4 rounded-2xl bg-white border border-slate-200 flex items-start justify-between gap-3">
-            <div>
-              <span class="inline-block px-2.5 py-0.5 rounded-full bg-blue-100 text-blue-900 text-xs font-bold">${escapeHtml(item.date || "")}</span>
-              <div class="font-bold text-slate-900 text-base mt-1">${escapeHtml(item.subject || "")}</div>
-              <div class="text-xs text-slate-600 mt-0.5">Địa điểm: ${escapeHtml(item.room || "")}</div>
-              ${item.note ? `<p class="text-xs text-slate-700 mt-1">${escapeHtml(item.note)}</p>` : ""}
-            </div>
-            ${
-              isAdminLoggedIn
-                ? `<button onclick="deleteScheduleItem(${idx})" class="px-2.5 py-1 rounded-lg bg-rose-100 hover:bg-rose-200 text-rose-800 text-xs font-bold">Xóa</button>`
-                : ""
-            }
-          </div>`
-        )
-        .join("");
+  const container = document.getElementById('membersContainer');
+  if (!list.length) {
+    container.innerHTML = `<div class="empty-state">Không tìm thấy học viên phù hợp.</div>`;
+    return;
+  }
 
-      const viewer = document.getElementById("scheduleAttachmentViewer");
-      const att = appData.scheduleAttachment;
-      if (!att || !att.dataUrl) {
-        viewer.innerHTML = "Chưa có tệp PDF hoặc ảnh lịch học đính kèm.";
-        return;
-      }
-      if (att.type && att.type.startsWith("image/")) {
-        viewer.innerHTML = `
-          <div class="flex items-center justify-between mb-2">
-            <span class="font-semibold text-slate-800">${escapeHtml(att.name || "Ảnh lịch học")}</span>
-            ${isAdminLoggedIn ? `<button onclick="clearScheduleAttachment()" class="px-2.5 py-1 rounded-lg bg-rose-100 text-rose-800 text-xs font-bold">Gỡ tệp</button>` : ""}
+  if (memberViewMode === 'table') {
+    container.innerHTML = `
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>STT</th>
+              <th>Họ và tên</th>
+              <th>Chức vụ</th>
+              <th>Đơn vị công tác</th>
+              <th>Điện thoại</th>
+              <th>Email</th>
+              <th class="no-print">Thao tác</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${list.map((m, idx) => `
+              <tr>
+                <td>${idx + 1}</td>
+                <td><strong>${escapeHtml(m.name)}</strong></td>
+                <td><span class="badge ${m.roleType === 'BCP' ? 'badge-crimson' : ''}">${escapeHtml(m.position || 'Học viên')}</span></td>
+                <td>${escapeHtml(m.unit || '')}</td>
+                <td>${escapeHtml(m.phone || '')}</td>
+                <td>${escapeHtml(m.email || '')}</td>
+                <td class="no-print">
+                  <button class="btn btn-outline btn-xs" onclick="openMemberModal('${m.id}')">Sửa</button>
+                  <button class="btn btn-danger-soft btn-xs" onclick="deleteMember('${m.id}')">Xóa</button>
+                </td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      </div>
+    `;
+  } else {
+    container.innerHTML = `<div class="grid-3">` + list.map(m => `
+      <div class="member-card">
+        <div class="member-top">
+          <div class="avatar">
+            ${m.avatar ? `<img src="${m.avatar}" alt="${escapeHtml(m.name)}">` : getInitials(m.name)}
           </div>
-          <img src="${att.dataUrl}" alt="Lịch học" class="max-h-[520px] rounded-xl border border-slate-200 cursor-pointer" onclick="openImageModal(this.src)" />`;
-      } else {
-        viewer.innerHTML = `
-          <div class="flex items-center justify-between flex-wrap gap-2">
-            <span class="font-semibold text-slate-800">📄 ${escapeHtml(att.name || "Lịch học PDF")}</span>
-            <div class="flex items-center gap-2">
-              <a href="${att.dataUrl}" download="${escapeHtml(att.name || "lich-hoc-k20a11.pdf")}" class="px-3 py-1.5 rounded-xl bg-blue-600 text-white text-xs font-bold">Tải xuống PDF</a>
-              ${isAdminLoggedIn ? `<button onclick="clearScheduleAttachment()" class="px-2.5 py-1 rounded-lg bg-rose-100 text-rose-800 text-xs font-bold">Gỡ tệp</button>` : ""}
-            </div>
+          <div style="min-width:0;flex:1;">
+            <h3 class="member-name">${escapeHtml(m.name)}</h3>
+            <div class="member-role">${escapeHtml(m.position || 'Học viên')}</div>
           </div>
-          <iframe src="${att.dataUrl}" class="w-full h-[480px] mt-3 rounded-xl border border-slate-200"></iframe>`;
+          <span class="badge ${m.roleType === 'BCP' ? 'badge-crimson' : ''}">${m.roleType === 'BCP' ? 'BCS' : 'HV'}</span>
+        </div>
+        <div class="member-meta">
+          <div><i data-lucide="building-2" size="14"></i><span>${escapeHtml(m.unit || 'Đang cập nhật đơn vị')}</span></div>
+          <div><i data-lucide="phone" size="14"></i><span>${escapeHtml(m.phone || 'Chưa có SĐT')}</span></div>
+          <div><i data-lucide="mail" size="14"></i><span>${escapeHtml(m.email || 'Chưa có email')}</span></div>
+        </div>
+        <div class="no-print" style="display:flex;justify-content:flex-end;gap:6px;margin-top:auto;padding-top:6px;border-top:1px solid var(--line);">
+          <button class="btn btn-outline btn-xs" onclick="openMemberModal('${m.id}')"><i data-lucide="pencil" size="12"></i> Sửa</button>
+          <button class="btn btn-danger-soft btn-xs" onclick="deleteMember('${m.id}')"><i data-lucide="trash-2" size="12"></i> Xóa</button>
+        </div>
+      </div>
+    `).join('') + `</div>`;
+  }
+  if (window.lucide) lucide.createIcons();
+}
+
+function openMemberModal(id = null) {
+  const m = id ? state.members.find(x => x.id === id) : { name: '', roleType: 'HV', position: 'Học viên', unit: '', phone: '', email: '', avatar: '' };
+  openModal({
+    title: id ? 'Cập nhật thông tin học viên' : 'Thêm học viên mới',
+    bodyHtml: `
+      <div class="form-grid-2">
+        <div class="form-row">
+          <label>Họ và tên *</label>
+          <input type="text" id="m_name" class="input" value="${escapeHtml(m.name)}" required>
+        </div>
+        <div class="form-row">
+          <label>Nhóm vai trò</label>
+          <select id="m_roleType" class="select">
+            <option value="HV" ${m.roleType === 'HV' ? 'selected' : ''}>Học viên</option>
+            <option value="BCP" ${m.roleType === 'BCP' ? 'selected' : ''}>Ban cán sự lớp</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-grid-2">
+        <div class="form-row">
+          <label>Chức vụ trong lớp</label>
+          <input type="text" id="m_position" class="input" value="${escapeHtml(m.position || 'Học viên')}">
+        </div>
+        <div class="form-row">
+          <label>Đơn vị công tác</label>
+          <input type="text" id="m_unit" class="input" value="${escapeHtml(m.unit || '')}">
+        </div>
+      </div>
+      <div class="form-grid-2">
+        <div class="form-row">
+          <label>Số điện thoại</label>
+          <input type="text" id="m_phone" class="input" value="${escapeHtml(m.phone || '')}">
+        </div>
+        <div class="form-row">
+          <label>Email</label>
+          <input type="email" id="m_email" class="input" value="${escapeHtml(m.email || '')}">
+        </div>
+      </div>
+      <div class="form-row">
+        <label>Ảnh đại diện (tự động nén nhẹ trước khi lưu)</label>
+        <input type="file" id="m_avatarFile" class="input" accept="image/*">
+      </div>
+    `,
+    footHtml: `
+      <button class="btn btn-outline btn-sm" onclick="closeModal()">Hủy</button>
+      <button class="btn btn-primary btn-sm" id="saveMemberBtn">Lưu thông tin</button>
+    `
+  });
+
+  document.getElementById('saveMemberBtn').addEventListener('click', async () => {
+    const name = document.getElementById('m_name').value.trim();
+    if (!name) { showToast('Vui lòng nhập họ và tên học viên.'); return; }
+    let avatar = m.avatar || '';
+    const fileInput = document.getElementById('m_avatarFile');
+    if (fileInput.files && fileInput.files[0]) {
+      const rawDataUrl = await readFileAsDataUrl(fileInput.files[0]);
+      avatar = await compressImageDataUrl(rawDataUrl, { maxWidth: 480, maxHeight: 480, quality: 0.72, maxBytes: 180 * 1024 });
+    }
+    const record = {
+      id: id || uid('hv'),
+      name,
+      roleType: document.getElementById('m_roleType').value,
+      position: document.getElementById('m_position').value.trim() || 'Học viên',
+      unit: document.getElementById('m_unit').value.trim(),
+      phone: document.getElementById('m_phone').value.trim(),
+      email: document.getElementById('m_email').value.trim(),
+      avatar
+    };
+    if (id) {
+      state.members = state.members.map(x => x.id === id ? record : x);
+    } else {
+      state.members.push(record);
+    }
+    closeModal();
+    saveState();
+    showToast('Đã lưu thông tin học viên.');
+  });
+}
+
+function deleteMember(id) {
+  if (!confirm('Xóa học viên này khỏi danh sách lớp?')) return;
+  state.members = state.members.filter(x => x.id !== id);
+  saveState();
+  showToast('Đã xóa học viên.');
+}
+
+function renderSchedule() {
+  const q = (document.getElementById('scheduleSearch')?.value || '').trim().toLowerCase();
+  const statusFilter = document.getElementById('scheduleStatusFilter')?.value || 'ALL';
+  const list = state.schedules.filter(s => {
+    const matchSt = statusFilter === 'ALL' || s.status === statusFilter;
+    const hay = `${s.title} ${s.lecturer} ${s.location} ${s.note}`.toLowerCase();
+    return matchSt && (!q || hay.includes(q));
+  }).sort((a, b) => a.date.localeCompare(b.date));
+
+  const tbody = document.getElementById('scheduleTableBody');
+  if (!list.length) {
+    tbody.innerHTML = `<tr><td colspan="6" style="text-align:center;color:var(--muted);padding:24px;">Chưa có lịch học phù hợp.</td></tr>`;
+    return;
+  }
+
+  tbody.innerHTML = list.map(s => {
+    const badgeCls = s.status === 'Đã hoàn thành' ? 'badge-ok' : (s.status === 'Đang học' ? 'badge-crimson' : 'badge-warn');
+    return `
+      <tr>
+        <td style="white-space:nowrap;"><strong>${formatDateVi(s.date)}</strong></td>
+        <td>
+          <div style="font-weight:700;">${escapeHtml(s.title)}</div>
+          ${s.note ? `<div style="font-size:12px;color:var(--muted);">${escapeHtml(s.note)}</div>` : ''}
+        </td>
+        <td>${escapeHtml(s.lecturer || '')}</td>
+        <td>${escapeHtml(s.location || '')}</td>
+        <td><span class="badge ${badgeCls}">${escapeHtml(s.status)}</span></td>
+        <td class="no-print" style="white-space:nowrap;">
+          <button class="btn btn-outline btn-xs" onclick="openScheduleModal('${s.id}')">Sửa</button>
+          <button class="btn btn-danger-soft btn-xs" onclick="deleteSchedule('${s.id}')">Xóa</button>
+        </td>
+      </tr>
+    `;
+  }).join('');
+}
+
+function openScheduleModal(id = null) {
+  const s = id ? state.schedules.find(x => x.id === id) : { date: new Date().toISOString().slice(0, 10), title: '', lecturer: '', location: 'Hội trường A2 – HVCT KV IV', status: 'Sắp diễn ra', note: '' };
+  openModal({
+    title: id ? 'Cập nhật buổi học / chuyên đề' : 'Thêm buổi học / chuyên đề',
+    bodyHtml: `
+      <div class="form-grid-2">
+        <div class="form-row">
+          <label>Ngày học *</label>
+          <input type="date" id="s_date" class="input" value="${escapeHtml(s.date)}">
+        </div>
+        <div class="form-row">
+          <label>Trạng thái</label>
+          <select id="s_status" class="select">
+            <option value="Sắp diễn ra" ${s.status === 'Sắp diễn ra' ? 'selected' : ''}>Sắp diễn ra</option>
+            <option value="Đang học" ${s.status === 'Đang học' ? 'selected' : ''}>Đang học</option>
+            <option value="Đã hoàn thành" ${s.status === 'Đã hoàn thành' ? 'selected' : ''}>Đã hoàn thành</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <label>Tên chuyên đề / Nội dung *</label>
+        <input type="text" id="s_title" class="input" value="${escapeHtml(s.title)}">
+      </div>
+      <div class="form-grid-2">
+        <div class="form-row">
+          <label>Giảng viên</label>
+          <input type="text" id="s_lecturer" class="input" value="${escapeHtml(s.lecturer || '')}">
+        </div>
+        <div class="form-row">
+          <label>Địa điểm / Hình thức</label>
+          <input type="text" id="s_location" class="input" value="${escapeHtml(s.location || '')}">
+        </div>
+      </div>
+      <div class="form-row">
+        <label>Ghi chú</label>
+        <textarea id="s_note" class="textarea">${escapeHtml(s.note || '')}</textarea>
+      </div>
+    `,
+    footHtml: `
+      <button class="btn btn-outline btn-sm" onclick="closeModal()">Hủy</button>
+      <button class="btn btn-primary btn-sm" id="saveScheduleBtn">Lưu kế hoạch</button>
+    `
+  });
+
+  document.getElementById('saveScheduleBtn').addEventListener('click', () => {
+    const title = document.getElementById('s_title').value.trim();
+    const date = document.getElementById('s_date').value;
+    if (!title || !date) { showToast('Vui lòng nhập ngày và tên chuyên đề.'); return; }
+    const item = {
+      id: id || uid('sc'),
+      date,
+      title,
+      lecturer: document.getElementById('s_lecturer').value.trim(),
+      location: document.getElementById('s_location').value.trim(),
+      status: document.getElementById('s_status').value,
+      note: document.getElementById('s_note').value.trim()
+    };
+    state.schedules = id ? state.schedules.map(x => x.id === id ? item : x) : [...state.schedules, item];
+    closeModal();
+    saveState();
+    showToast('Đã lưu kế hoạch học tập.');
+  });
+}
+
+function deleteSchedule(id) {
+  if (!confirm('Xóa buổi học này?')) return;
+  state.schedules = state.schedules.filter(x => x.id !== id);
+  saveState();
+}
+
+function renderExams() {
+  const grid = document.getElementById('examsGrid');
+  if (!state.exams.length) {
+    grid.innerHTML = `<div class="empty-state">Chưa có lịch thi nào.</div>`;
+    return;
+  }
+  grid.innerHTML = [...state.exams].sort((a, b) => a.date.localeCompare(b.date)).map(e => `
+    <div class="card" style="display:grid;gap:8px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
+        <span class="badge badge-crimson"><i data-lucide="calendar" size="12"></i> ${formatDateVi(e.date)}</span>
+        <span class="badge badge-gold">${escapeHtml(e.format || 'Kiểm tra')}</span>
+      </div>
+      <h3 style="margin:2px 0 0;font-size:16.5px;">${escapeHtml(e.subject)}</h3>
+      <div style="font-size:13px;color:var(--ink-2);"><i data-lucide="map-pin" size="14" style="display:inline;vertical-align:-2px;"></i> ${escapeHtml(e.room || 'Đang cập nhật phòng/hình thức')}</div>
+      ${e.note ? `<div style="font-size:12.5px;color:var(--muted);background:#fdfaf5;padding:9px 11px;border-radius:10px;border:1px solid var(--line);">${escapeHtml(e.note)}</div>` : ''}
+      <div class="no-print" style="display:flex;justify-content:flex-end;gap:6px;margin-top:4px;">
+        <button class="btn btn-outline btn-xs" onclick="openExamModal('${e.id}')">Sửa</button>
+        <button class="btn btn-danger-soft btn-xs" onclick="deleteExam('${e.id}')">Xóa</button>
+      </div>
+    </div>
+  `).join('');
+  if (window.lucide) lucide.createIcons();
+}
+
+function openExamModal(id = null) {
+  const e = id ? state.exams.find(x => x.id === id) : { date: new Date().toISOString().slice(0, 10), subject: '', format: 'Thi viết tập trung', room: '', note: '' };
+  openModal({
+    title: id ? 'Cập nhật lịch thi' : 'Thêm lịch thi / kiểm tra',
+    bodyHtml: `
+      <div class="form-grid-2">
+        <div class="form-row">
+          <label>Ngày thi / Hạn nộp *</label>
+          <input type="date" id="e_date" class="input" value="${escapeHtml(e.date)}">
+        </div>
+        <div class="form-row">
+          <label>Hình thức thi</label>
+          <input type="text" id="e_format" class="input" value="${escapeHtml(e.format || '')}">
+        </div>
+      </div>
+      <div class="form-row">
+        <label>Môn học / Chuyên đề thi *</label>
+        <input type="text" id="e_subject" class="input" value="${escapeHtml(e.subject)}">
+      </div>
+      <div class="form-row">
+        <label>Phòng thi / Địa điểm / Cách thức nộp</label>
+        <input type="text" id="e_room" class="input" value="${escapeHtml(e.room || '')}">
+      </div>
+      <div class="form-row">
+        <label>Lưu ý cho học viên</label>
+        <textarea id="e_note" class="textarea">${escapeHtml(e.note || '')}</textarea>
+      </div>
+    `,
+    footHtml: `
+      <button class="btn btn-outline btn-sm" onclick="closeModal()">Hủy</button>
+      <button class="btn btn-primary btn-sm" id="saveExamBtn">Lưu lịch thi</button>
+    `
+  });
+
+  document.getElementById('saveExamBtn').addEventListener('click', () => {
+    const subject = document.getElementById('e_subject').value.trim();
+    const date = document.getElementById('e_date').value;
+    if (!subject || !date) { showToast('Vui lòng nhập ngày thi và môn học.'); return; }
+    const item = {
+      id: id || uid('ex'),
+      date,
+      subject,
+      format: document.getElementById('e_format').value.trim(),
+      room: document.getElementById('e_room').value.trim(),
+      note: document.getElementById('e_note').value.trim()
+    };
+    state.exams = id ? state.exams.map(x => x.id === id ? item : x) : [...state.exams, item];
+    closeModal();
+    saveState();
+    showToast('Đã lưu lịch thi.');
+  });
+}
+
+function deleteExam(id) {
+  if (!confirm('Xóa lịch thi này?')) return;
+  state.exams = state.exams.filter(x => x.id !== id);
+  saveState();
+}
+
+function renderNotices() {
+  const list = state.notices
+    .filter(n => activeNoticeCat === 'ALL' || n.category === activeNoticeCat)
+    .sort((a, b) => (b.pinned ? 1 : 0) - (a.pinned ? 1 : 0) || b.date.localeCompare(a.date));
+
+  const container = document.getElementById('noticesList');
+  if (!list.length) {
+    container.innerHTML = `<div class="empty-state">Chưa có thông báo trong mục này.</div>`;
+    return;
+  }
+
+  container.innerHTML = list.map(n => `
+    <div class="card" style="display:grid;gap:8px;${n.pinned ? 'border-left:4px solid var(--crimson);' : ''}">
+      <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;">
+        <div style="display:flex;align-items:center;gap:6px;">
+          ${n.pinned ? `<span class="badge badge-crimson"><i data-lucide="pin" size="12"></i> Ghim</span>` : ''}
+          <span class="badge badge-gold">${escapeHtml(n.category)}</span>
+        </div>
+        <span style="font-size:12px;color:var(--muted);">${formatDateVi(n.date)}</span>
+      </div>
+      <h3 style="margin:0;font-size:16.5px;">${escapeHtml(n.title)}</h3>
+      <p style="margin:0;font-size:13.5px;color:var(--ink-2);white-space:pre-line;">${escapeHtml(n.content)}</p>
+      <div class="no-print" style="display:flex;justify-content:flex-end;gap:6px;">
+        <button class="btn btn-outline btn-xs" onclick="openNoticeModal('${n.id}')">Sửa</button>
+        <button class="btn btn-danger-soft btn-xs" onclick="deleteNotice('${n.id}')">Xóa</button>
+      </div>
+    </div>
+  `).join('');
+  if (window.lucide) lucide.createIcons();
+}
+
+function openNoticeModal(id = null) {
+  const n = id ? state.notices.find(x => x.id === id) : { date: new Date().toISOString().slice(0, 10), category: 'Hành chính', title: '', content: '', pinned: false };
+  openModal({
+    title: id ? 'Chỉnh sửa thông báo' : 'Đăng thông báo mới',
+    bodyHtml: `
+      <div class="form-grid-2">
+        <div class="form-row">
+          <label>Chuyên mục</label>
+          <select id="n_category" class="select">
+            <option value="Hành chính" ${n.category === 'Hành chính' ? 'selected' : ''}>Hành chính</option>
+            <option value="Học tập & Thi" ${n.category === 'Học tập & Thi' ? 'selected' : ''}>Học tập &amp; Thi</option>
+            <option value="Sinh hoạt lớp" ${n.category === 'Sinh hoạt lớp' ? 'selected' : ''}>Sinh hoạt lớp</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label>Ngày đăng</label>
+          <input type="date" id="n_date" class="input" value="${escapeHtml(n.date)}">
+        </div>
+      </div>
+      <div class="form-row">
+        <label>Tiêu đề thông báo *</label>
+        <input type="text" id="n_title" class="input" value="${escapeHtml(n.title)}">
+      </div>
+      <div class="form-row">
+        <label>Nội dung chi tiết *</label>
+        <textarea id="n_content" class="textarea" style="min-height:120px;">${escapeHtml(n.content)}</textarea>
+      </div>
+      <label style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;cursor:pointer;">
+        <input type="checkbox" id="n_pinned" ${n.pinned ? 'checked' : ''}> Ghim thông báo lên đầu bảng tin
+      </label>
+    `,
+    footHtml: `
+      <button class="btn btn-outline btn-sm" onclick="closeModal()">Hủy</button>
+      <button class="btn btn-primary btn-sm" id="saveNoticeBtn">Đăng thông báo</button>
+    `
+  });
+
+  document.getElementById('saveNoticeBtn').addEventListener('click', () => {
+    const title = document.getElementById('n_title').value.trim();
+    const content = document.getElementById('n_content').value.trim();
+    if (!title || !content) { showToast('Vui lòng nhập tiêu đề và nội dung thông báo.'); return; }
+    const item = {
+      id: id || uid('nt'),
+      date: document.getElementById('n_date').value || new Date().toISOString().slice(0, 10),
+      category: document.getElementById('n_category').value,
+      title,
+      content,
+      pinned: document.getElementById('n_pinned').checked
+    };
+    state.notices = id ? state.notices.map(x => x.id === id ? item : x) : [item, ...state.notices];
+    closeModal();
+    saveState();
+    showToast('Đã lưu thông báo.');
+  });
+}
+
+function deleteNotice(id) {
+  if (!confirm('Xóa thông báo này?')) return;
+  state.notices = state.notices.filter(x => x.id !== id);
+  saveState();
+}
+
+function renderDocs() {
+  const q = (document.getElementById('docSearch')?.value || '').trim().toLowerCase();
+  const list = state.docs.filter(d => !q || `${d.title} ${d.category} ${d.summary} ${d.contentText}`.toLowerCase().includes(q));
+  const grid = document.getElementById('docsGrid');
+  if (!list.length) {
+    grid.innerHTML = `<div class="empty-state">Chưa có tài liệu phù hợp.</div>`;
+    return;
+  }
+
+  grid.innerHTML = list.map(d => `
+    <div class="card" style="display:flex;flex-direction:column;gap:10px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
+        <span class="badge badge-crimson">${escapeHtml(d.category || 'Tài liệu')}</span>
+      </div>
+      <h3 style="margin:0;font-size:15.5px;">${escapeHtml(d.title)}</h3>
+      <p style="margin:0;font-size:13px;color:var(--ink-2);flex:1;">${escapeHtml(d.summary || '')}</p>
+      <div class="no-print" style="display:flex;flex-wrap:wrap;gap:6px;padding-top:8px;border-top:1px solid var(--line);">
+        ${d.url ? `<a href="${escapeHtml(d.url)}" target="_blank" rel="noopener" class="btn btn-outline btn-xs"><i data-lucide="external-link" size="12"></i> Mở liên kết</a>` : ''}
+        <button class="btn btn-outline btn-xs" onclick="viewDocModal('${d.id}')">Xem nội dung</button>
+        <button class="btn btn-outline btn-xs" onclick="exportDocRecordToDocx('${d.id}')"><i data-lucide="file-down" size="12"></i> .docx</button>
+        <button class="btn btn-outline btn-xs" onclick="openDocModal('${d.id}')">Sửa</button>
+        <button class="btn btn-danger-soft btn-xs" onclick="deleteDoc('${d.id}')">Xóa</button>
+      </div>
+    </div>
+  `).join('');
+  if (window.lucide) lucide.createIcons();
+}
+
+function viewDocModal(id) {
+  const d = state.docs.find(x => x.id === id);
+  if (!d) return;
+  openModal({
+    title: d.title,
+    bodyHtml: `
+      <div class="badge badge-crimson">${escapeHtml(d.category || 'Tài liệu')}</div>
+      ${d.summary ? `<p style="margin:0;font-weight:600;color:var(--ink-2);">${escapeHtml(d.summary)}</p>` : ''}
+      <div style="white-space:pre-wrap;background:#fdfaf5;padding:14px;border-radius:12px;border:1px solid var(--line);font-size:13.5px;line-height:1.65;">${escapeHtml(d.contentText || 'Không có nội dung văn bản đính kèm.')}</div>
+    `,
+    footHtml: `
+      <button class="btn btn-outline btn-sm" onclick="exportDocRecordToDocx('${d.id}')">Tải file .docx</button>
+      <button class="btn btn-primary btn-sm" onclick="closeModal()">Đóng</button>
+    `
+  });
+}
+
+function openDocModal(id = null) {
+  const d = id ? state.docs.find(x => x.id === id) : { title: '', category: 'Đề cương', url: '', summary: '', contentText: '' };
+  openModal({
+    title: id ? 'Cập nhật tài liệu' : 'Thêm tài liệu học tập',
+    bodyHtml: `
+      <div class="form-grid-2">
+        <div class="form-row">
+          <label>Tên tài liệu *</label>
+          <input type="text" id="d_title" class="input" value="${escapeHtml(d.title)}">
+        </div>
+        <div class="form-row">
+          <label>Phân loại</label>
+          <input type="text" id="d_category" class="input" value="${escapeHtml(d.category || 'Tài liệu')}">
+        </div>
+      </div>
+      <div class="form-row">
+        <label>Liên kết tài liệu (Google Drive / văn bản trực tuyến - tùy chọn)</label>
+        <input type="url" id="d_url" class="input" value="${escapeHtml(d.url || '')}" placeholder="https://...">
+      </div>
+      <div class="form-row">
+        <label>Tóm tắt / Ghi chú</label>
+        <input type="text" id="d_summary" class="input" value="${escapeHtml(d.summary || '')}">
+      </div>
+      <div class="form-row">
+        <label>Nội dung / Đề cương / Văn bản (để xem trực tiếp hoặc xuất .docx)</label>
+        <textarea id="d_content" class="textarea" style="min-height:130px;">${escapeHtml(d.contentText || '')}</textarea>
+      </div>
+    `,
+    footHtml: `
+      <button class="btn btn-outline btn-sm" onclick="closeModal()">Hủy</button>
+      <button class="btn btn-primary btn-sm" id="saveDocBtn">Lưu tài liệu</button>
+    `
+  });
+
+  document.getElementById('saveDocBtn').addEventListener('click', () => {
+    const title = document.getElementById('d_title').value.trim();
+    if (!title) { showToast('Vui lòng nhập tên tài liệu.'); return; }
+    const item = {
+      id: id || uid('dc'),
+      title,
+      category: document.getElementById('d_category').value.trim() || 'Tài liệu',
+      url: document.getElementById('d_url').value.trim(),
+      summary: document.getElementById('d_summary').value.trim(),
+      contentText: document.getElementById('d_content').value
+    };
+    state.docs = id ? state.docs.map(x => x.id === id ? item : x) : [...state.docs, item];
+    closeModal();
+    saveState();
+    showToast('Đã lưu tài liệu.');
+  });
+}
+
+function deleteDoc(id) {
+  if (!confirm('Xóa tài liệu này?')) return;
+  state.docs = state.docs.filter(x => x.id !== id);
+  saveState();
+}
+
+function renderGallery() {
+  const grid = document.getElementById('galleryGrid');
+  if (!state.gallery.length) {
+    grid.innerHTML = `<div class="empty-state">Chưa có ảnh kỷ niệm nào.</div>`;
+    return;
+  }
+
+  grid.innerHTML = state.gallery.map(p => `
+    <div class="photo-card">
+      <div class="photo-thumb" onclick="openLightbox('${p.imageData}', '${escapeHtml(p.title)}', '${escapeHtml(p.caption)}')">
+        <img src="${p.imageData}" alt="${escapeHtml(p.title)}">
+      </div>
+      <div class="photo-body">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
+          <h3 class="photo-title">${escapeHtml(p.title)}</h3>
+          <span style="font-size:11.5px;color:var(--muted);">${formatDateVi(p.date)}</span>
+        </div>
+        <p class="photo-cap">${escapeHtml(p.caption || '')}</p>
+        <div class="no-print" style="display:flex;justify-content:flex-end;gap:6px;padding-top:6px;border-top:1px solid var(--line);">
+          <button class="btn btn-outline btn-xs" onclick="openLightbox('${p.imageData}', '${escapeHtml(p.title)}', '${escapeHtml(p.caption)}')">Phóng to</button>
+          <button class="btn btn-danger-soft btn-xs" onclick="deletePhoto('${p.id}')">Xóa</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function readFileAsDataUrl(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+function openPhotoModal() {
+  openModal({
+    title: 'Thêm ảnh kỷ niệm lớp K20A11',
+    bodyHtml: `
+      <div class="form-row">
+        <label>Chọn ảnh từ thiết bị (tự động nén tối ưu trước khi đẩy Firebase) *</label>
+        <input type="file" id="p_file" class="input" accept="image/*">
+      </div>
+      <div class="form-grid-2">
+        <div class="form-row">
+          <label>Tiêu đề ảnh *</label>
+          <input type="text" id="p_title" class="input" placeholder="Ví dụ: Buổi thảo luận chuyên đề...">
+        </div>
+        <div class="form-row">
+          <label>Ngày chụp</label>
+          <input type="date" id="p_date" class="input" value="${new Date().toISOString().slice(0, 10)}">
+        </div>
+      </div>
+      <div class="form-row">
+        <label>Chú thích kỷ niệm</label>
+        <textarea id="p_caption" class="textarea" placeholder="Ghi lại khoảnh khắc hoặc hoạt động của lớp..."></textarea>
+      </div>
+    `,
+    footHtml: `
+      <button class="btn btn-outline btn-sm" onclick="closeModal()">Hủy</button>
+      <button class="btn btn-primary btn-sm" id="savePhotoBtn">Lưu ảnh</button>
+    `
+  });
+
+  document.getElementById('savePhotoBtn').addEventListener('click', async () => {
+    const file = document.getElementById('p_file').files?.[0];
+    const title = document.getElementById('p_title').value.trim();
+    if (!file || !title) { showToast('Vui lòng chọn ảnh và nhập tiêu đề.'); return; }
+    const rawDataUrl = await readFileAsDataUrl(file);
+    const compressedImageData = await compressImageDataUrl(rawDataUrl, {
+      maxWidth: 1280,
+      maxHeight: 1280,
+      quality: 0.72,
+      maxBytes: 420 * 1024
+    });
+    state.gallery.unshift({
+      id: uid('ph'),
+      title,
+      date: document.getElementById('p_date').value || new Date().toISOString().slice(0, 10),
+      caption: document.getElementById('p_caption').value.trim(),
+      imageData: compressedImageData
+    });
+    closeModal();
+    saveState();
+    showToast('Đã tự động nén và thêm ảnh kỷ niệm.');
+  });
+}
+
+function deletePhoto(id) {
+  if (!confirm('Xóa ảnh này khỏi album?')) return;
+  state.gallery = state.gallery.filter(x => x.id !== id);
+  saveState();
+}
+
+/* AI Assistant */
+function renderAiMessages() {
+  const box = document.getElementById('aiMessages');
+  box.innerHTML = state.aiMessages.map(m => `
+    <div class="msg ${m.role === 'user' ? 'user' : 'bot'}">${escapeHtml(m.text)}</div>
+  `).join('');
+  box.scrollTop = box.scrollHeight;
+}
+
+async function extractTextFromFile(file) {
+  const name = file.name.toLowerCase();
+  if (file.type.startsWith('image/')) {
+    const rawDataUrl = await readFileAsDataUrl(file);
+    const compressedUrl = await compressImageDataUrl(rawDataUrl, {
+      maxWidth: 1280,
+      maxHeight: 1280,
+      quality: 0.75,
+      maxBytes: 450 * 1024
+    });
+    const base64 = compressedUrl.split(',')[1] || '';
+    return { kind: 'image', name: file.name, mimeType: 'image/jpeg', base64 };
+  }
+  if (name.endsWith('.docx') && window.mammoth) {
+    const buf = await file.arrayBuffer();
+    const res = await mammoth.extractRawText({ arrayBuffer: buf });
+    return { kind: 'text', name: file.name, text: res.value || '' };
+  }
+  if (name.endsWith('.pdf') && window.pdfjsLib) {
+    const buf = await file.arrayBuffer();
+    const pdf = await pdfjsLib.getDocument({ data: buf }).promise;
+    let full = '';
+    for (let i = 1; i <= Math.min(pdf.numPages, 25); i++) {
+      const page = await pdf.getPage(i);
+      const tc = await page.getTextContent();
+      full += tc.items.map(it => it.str).join(' ') + '\n';
+    }
+    return { kind: 'text', name: file.name, text: full };
+  }
+  const text = await file.text();
+  return { kind: 'text', name: file.name, text };
+}
+
+document.getElementById('aiFileInput').addEventListener('change', async (e) => {
+  const files = Array.from(e.target.files || []);
+  for (const f of files) {
+    try {
+      const parsed = await extractTextFromFile(f);
+      aiAttachments.push(parsed);
+    } catch (err) {
+      showToast('Không đọc được tệp ' + f.name);
+    }
+  }
+  renderAiAttachments();
+  e.target.value = '';
+});
+
+function renderAiAttachments() {
+  const wrap = document.getElementById('aiAttachmentsList');
+  wrap.innerHTML = aiAttachments.map((a, idx) => `
+    <div class="badge" style="justify-content:space-between;padding:6px 10px;">
+      <span>${a.kind === 'image' ? 'Ảnh' : 'Tài liệu'}: ${escapeHtml(a.name)}</span>
+      <button type="button" class="btn btn-danger-soft btn-xs" onclick="removeAiAttachment(${idx})">×</button>
+    </div>
+  `).join('');
+}
+
+function removeAiAttachment(idx) {
+  aiAttachments.splice(idx, 1);
+  renderAiAttachments();
+}
+
+document.getElementById('saveAiKeyBtn').addEventListener('click', () => {
+  const k = document.getElementById('aiApiKeyInput').value.trim();
+  localStorage.setItem(API_KEY_STORAGE, k);
+  showToast(k ? 'Đã lưu Gemini API Key trên trình duyệt.' : 'Đã xóa Gemini API Key.');
+});
+
+document.getElementById('aiModeSelect').addEventListener('change', (e) => {
+  document.getElementById('aiActiveModeBadge').textContent = e.target.value;
+});
+
+document.querySelectorAll('.ai-prompt-chip').forEach(chip => {
+  chip.addEventListener('click', () => {
+    document.getElementById('aiPromptInput').value = chip.dataset.prompt;
+    document.getElementById('aiPromptInput').focus();
+  });
+});
+
+document.getElementById('clearAiChatBtn').addEventListener('click', () => {
+  state.aiMessages = [{
+    role: 'bot',
+    text: 'Đã làm mới cuộc trò chuyện. Trợ lý Tiểu Hoa Sen sẵn sàng hỗ trợ lớp K20A11!'
+  }];
+  aiAttachments = [];
+  renderAiAttachments();
+  saveState(true);
+});
+
+document.getElementById('aiPromptInput').addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    document.getElementById('aiComposerForm').requestSubmit();
+  }
+});
+
+document.getElementById('aiComposerForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const promptEl = document.getElementById('aiPromptInput');
+  const promptText = promptEl.value.trim();
+  if (!promptText && !aiAttachments.length) return;
+
+  const apiKey = (document.getElementById('aiApiKeyInput').value || localStorage.getItem(API_KEY_STORAGE) || '').trim();
+  const mode = document.getElementById('aiModeSelect').value;
+
+  const attachedSummary = aiAttachments.length
+    ? '\n[Đính kèm: ' + aiAttachments.map(a => a.name).join(', ') + ']'
+    : '';
+  const userDisplay = (promptText || 'Hãy phân tích tài liệu/ảnh đính kèm.') + attachedSummary;
+
+  state.aiMessages.push({ role: 'user', text: userDisplay });
+  promptEl.value = '';
+  renderAiMessages();
+
+  if (!apiKey) {
+    const reply = 'Bạn chưa nhập Gemini API Key ở cột bên trái nên mình chưa thể gọi mô hình AI trực tiếp.\nHãy dán API Key của bạn rồi bấm "Lưu", sau đó gửi lại yêu cầu nhé!';
+    state.aiMessages.push({ role: 'bot', text: reply });
+    lastAiMarkdown = reply;
+    renderAiMessages();
+    saveState(true);
+    return;
+  }
+
+  const sendBtn = document.getElementById('aiSendBtn');
+  sendBtn.disabled = true;
+  sendBtn.textContent = 'Đang xử lý...';
+
+  try {
+    const systemInstruction = `Bạn là "Trợ lý Tiểu Hoa Sen", trợ lý học tập chuyên biệt cho học viên lớp K20A11 chương trình Cao cấp lý luận chính trị tại Học viện Chính trị khu vực IV. Trả lời bằng tiếng Việt chuẩn mực, khoa học, mạch lạc, khách quan, có cấu trúc rõ ràng và bám sát lập trường lý luận chính trị cùng thực tiễn Việt Nam. Chế độ hiện tại: ${mode}.`;
+
+    const parts = [];
+    let combinedPrompt = `[Chế độ: ${mode}]\n${promptText || 'Vui lòng hỗ trợ theo nội dung đính kèm.'}`;
+    for (const att of aiAttachments) {
+      if (att.kind === 'text' && att.text) {
+        combinedPrompt += `\n\n--- Nội dung tệp ${att.name} ---\n${att.text.slice(0, 12000)}`;
+      } else if (att.kind === 'image' && att.base64) {
+        parts.push({ inlineData: { mimeType: att.mimeType, data: att.base64 } });
       }
     }
+    parts.push({ text: combinedPrompt });
 
-    async function addScheduleItem() {
-      if (!requireAdmin()) return;
-      const date = prompt("Nhập ngày học (vd: 30/11/2026):");
-      if (!date) return;
-      const subject = prompt("Nhập tên môn / chuyên đề:") || "";
-      const room = prompt("Nhập phòng học / địa điểm:", "Học viện Chính trị khu vực IV") || "";
-      const note = prompt("Ghi chú thêm:", "") || "";
-      appData.scheduleItems.push({ id: "sch-" + Date.now(), date, subject, room, note });
-      renderSchedule();
-      await pushToFirebase(appData);
-    }
+    const historyContents = state.aiMessages.slice(-8, -1).map(m => ({
+      role: m.role === 'user' ? 'user' : 'model',
+      parts: [{ text: m.text }]
+    }));
 
-    async function deleteScheduleItem(idx) {
-      if (!requireAdmin()) return;
-      appData.scheduleItems.splice(idx, 1);
-      renderSchedule();
-      await pushToFirebase(appData);
-    }
-
-    async function handleScheduleFileUpload(event) {
-      if (!requireAdmin()) return;
-      const file = event.target.files[0];
-      event.target.value = "";
-      if (!file) return;
-      try {
-        let dataUrl = "";
-        let mime = file.type;
-        if (file.type.startsWith("image/")) {
-          dataUrl = await compressImageFile(file, 1280, 0.78);
-          mime = "image/jpeg";
-        } else {
-          if (file.size > 2.5 * 1024 * 1024) {
-            showToast("Tệp PDF lớn hơn 2.5MB có thể gây lỗi đẩy lên Firebase; nên chia sẻ qua link ở mục Chia sẻ.");
-          }
-          dataUrl = await readFileAsDataUrl(file);
-        }
-        appData.scheduleAttachment = { name: file.name, type: mime, dataUrl };
-        renderSchedule();
-        await pushToFirebase(appData);
-        showToast("Đã tải tệp lịch học lên!");
-      } catch (e) {
-        showToast("Không thể đọc tệp lịch học.");
-      }
-    }
-
-    async function clearScheduleAttachment() {
-      if (!requireAdmin()) return;
-      appData.scheduleAttachment = null;
-      renderSchedule();
-      await pushToFirebase(appData);
-    }
-
-    function renderGallery() {
-      const container = document.getElementById("albumsContainer");
-      container.innerHTML = appData.albums
-        .map(
-          (alb, albIdx) => `
-          <div class="p-5 rounded-3xl bg-white border border-slate-200 space-y-4">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-3">
-              <div>
-                <div class="flex items-center gap-2 flex-wrap">
-                  <h3 class="text-lg font-bold text-blue-950">${escapeHtml(alb.title || "")}</h3>
-                  ${alb.date ? `<span class="px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 text-xs font-bold">${escapeHtml(alb.date)}</span>` : ""}
-                </div>
-                <p class="text-sm text-slate-600 mt-1">${escapeHtml(alb.desc || "")}</p>
-              </div>
-              ${
-                isAdminLoggedIn
-                  ? `<div class="flex items-center gap-2 flex-wrap">
-                      <label class="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold cursor-pointer">
-                        + Thêm ảnh vào mục này
-                        <input type="file" accept="image/*" class="hidden" onchange="handleAlbumPhotoUpload(event, ${albIdx})" />
-                      </label>
-                      <button onclick="deleteAlbum(${albIdx})" class="px-3 py-2 rounded-xl bg-rose-100 hover:bg-rose-200 text-rose-800 text-xs font-bold">
-                        Xóa mục
-                      </button>
-                    </div>`
-                  : ""
-              }
-            </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              ${
-                Array.isArray(alb.photos) && alb.photos.length > 0
-                  ? alb.photos
-                      .map(
-                        (ph, pIdx) => `
-                        <div class="rounded-2xl overflow-hidden border border-slate-200 bg-slate-50 group relative">
-                          <img src="${ph.src}" alt="${escapeHtml(ph.caption || "Ảnh kỷ niệm")}" onclick="openImageModal(this.src)" class="w-full h-52 object-cover cursor-pointer" />
-                          <div class="p-2.5 flex items-center justify-between gap-2 text-xs text-slate-700">
-                            <span class="truncate">${escapeHtml(ph.caption || "Ảnh kỷ niệm K20A11")}</span>
-                            ${
-                              isAdminLoggedIn
-                                ? `<button onclick="deletePhoto(${albIdx}, ${pIdx})" class="px-2 py-0.5 rounded bg-rose-100 text-rose-800 font-bold shrink-0">Xóa</button>`
-                                : ""
-                            }
-                          </div>
-                        </div>`
-                      )
-                      .join("")
-                  : `<p class="text-sm text-slate-500 col-span-full">Chưa có ảnh nào trong mục này.</p>`
-              }
-            </div>
-          </div>`
-        )
-        .join("");
-    }
-
-    async function addAlbum() {
-      if (!requireAdmin()) return;
-      const title = prompt("Nhập tên album kỷ niệm:");
-      if (!title) return;
-      const date = prompt("Nhập mốc thời gian (vd: Tháng 11/2026):", "") || "";
-      const desc = prompt("Nhập mô tả ngắn cho album:", "") || "";
-      appData.albums.unshift({ id: "alb-" + Date.now(), title, date, desc, photos: [] });
-      renderGallery();
-      await pushToFirebase(appData);
-    }
-
-    async function deleteAlbum(albIdx) {
-      if (!requireAdmin()) return;
-      if (!confirm("Bạn có chắc muốn xóa album này?")) return;
-      appData.albums.splice(albIdx, 1);
-      renderGallery();
-      await pushToFirebase(appData);
-    }
-
-    async function handleAlbumPhotoUpload(event, albIdx) {
-      if (!requireAdmin()) return;
-      const file = event.target.files[0];
-      event.target.value = "";
-      if (!file) return;
-      try {
-        const compressedSrc = await compressImageFile(file, 1200, 0.75);
-        const caption = prompt("Chú thích cho bức ảnh (có thể bỏ trống):", file.name.replace(/\.[^.]+$/, "")) || "";
-        if (!Array.isArray(appData.albums[albIdx].photos)) {
-          appData.albums[albIdx].photos = [];
-        }
-        appData.albums[albIdx].photos.push({
-          id: "ph-" + Date.now(),
-          src: compressedSrc,
-          caption
-        });
-        renderGallery();
-        const ok = await pushToFirebase(appData);
-        if (ok) showToast("Đã lưu và đồng bộ ảnh lên Firebase!");
-      } catch (err) {
-        showToast("Không thể xử lý ảnh này.");
-      }
-    }
-
-    async function deletePhoto(albIdx, pIdx) {
-      if (!requireAdmin()) return;
-      appData.albums[albIdx].photos.splice(pIdx, 1);
-      renderGallery();
-      await pushToFirebase(appData);
-    }
-
-    function renderShareDocs() {
-      const el = document.getElementById("shareDocsList");
-      el.innerHTML = appData.shareDocs
-        .map(
-          (doc, idx) => `
-          <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex items-start justify-between gap-3">
-            <div>
-              <span class="inline-block px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 text-xs font-bold">${escapeHtml(doc.category || "Tài liệu")}</span>
-              <div class="font-bold text-slate-900 text-base mt-1">${escapeHtml(doc.title || "")}</div>
-              <p class="text-sm text-slate-700 mt-1 whitespace-pre-line">${escapeHtml(doc.summary || "")}</p>
-            </div>
-            ${
-              isAdminLoggedIn
-                ? `<button onclick="deleteShareDoc(${idx})" class="px-2.5 py-1 rounded-lg bg-rose-100 hover:bg-rose-200 text-rose-800 text-xs font-bold">Xóa</button>`
-                : ""
-            }
-          </div>`
-        )
-        .join("");
-    }
-
-    async function addShareDoc() {
-      if (!requireAdmin()) return;
-      const title = prompt("Nhập tên tài liệu / Nghị định / Luật:");
-      if (!title) return;
-      const category = prompt("Phân loại (Nghị định, Luật, Tài liệu học tập...):", "Văn bản tham khảo") || "Văn bản tham khảo";
-      const summary = prompt("Nhập nội dung trích yếu hoặc liên kết tài liệu:") || "";
-      appData.shareDocs.unshift({ id: "doc-" + Date.now(), title, category, summary });
-      renderShareDocs();
-      await pushToFirebase(appData);
-    }
-
-    async function deleteShareDoc(idx) {
-      if (!requireAdmin()) return;
-      appData.shareDocs.splice(idx, 1);
-      renderShareDocs();
-      await pushToFirebase(appData);
-    }
-
-    function renderContacts() {
-      const grid = document.getElementById("contactsGrid");
-      grid.innerHTML = appData.contacts
-        .map(
-          (ct, idx) => `
-          <div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-xs flex items-start justify-between gap-2">
-            <div>
-              <div class="text-xs font-bold uppercase text-red-800">${escapeHtml(ct.role || "")}</div>
-              <div class="text-lg font-bold text-slate-900 mt-0.5">${escapeHtml(ct.name || "")}</div>
-              <div class="text-sm text-blue-900 font-semibold mt-1">📞 ${escapeHtml(ct.phone || "")}</div>
-              <div class="text-xs text-slate-600 mt-0.5">🏢 ${escapeHtml(ct.unit || "")}</div>
-            </div>
-            ${
-              isAdminLoggedIn
-                ? `<button onclick="deleteContactPerson(${idx})" class="px-2.5 py-1 rounded-lg bg-rose-100 hover:bg-rose-200 text-rose-800 text-xs font-bold">Xóa</button>`
-                : ""
-            }
-          </div>`
-        )
-        .join("");
-    }
-
-    async function addContactPerson() {
-      if (!requireAdmin()) return;
-      const role = prompt("Nhập chức danh (vd: Chủ nhiệm lớp, Lớp trưởng, Lớp phó):");
-      if (!role) return;
-      const name = prompt("Nhập họ và tên:") || "";
-      const phone = prompt("Nhập số điện thoại:") || "";
-      const unit = prompt("Nhập đơn vị công tác:") || "";
-      appData.contacts.push({ id: "ct-" + Date.now(), role, name, phone, unit });
-      renderContacts();
-      await pushToFirebase(appData);
-    }
-
-    async function deleteContactPerson(idx) {
-      if (!requireAdmin()) return;
-      appData.contacts.splice(idx, 1);
-      renderContacts();
-      await pushToFirebase(appData);
-    }
-
-    function handleGlobalSearch(q) {
-      const box = document.getElementById("searchResultsBox");
-      const term = (q || "").trim().toLowerCase();
-      if (!term) {
-        box.classList.add("hidden");
-        box.innerHTML = "";
-        return;
-      }
-      const results = [];
-      appData.students.forEach((s) => {
-        if (`${s.name} ${s.role} ${s.unit}`.toLowerCase().includes(term)) {
-          results.push({ tab: "students", label: `👤 ${s.name} (${s.role})` });
-        }
-      });
-      appData.scheduleItems.forEach((sc) => {
-        if (`${sc.date} ${sc.subject} ${sc.room}`.toLowerCase().includes(term)) {
-          results.push({ tab: "schedule", label: `📅 ${sc.date} – ${sc.subject}` });
-        }
-      });
-      appData.shareDocs.forEach((d) => {
-        if (`${d.title} ${d.category} ${d.summary}`.toLowerCase().includes(term)) {
-          results.push({ tab: "share", label: `📂 ${d.title}` });
-        }
-      });
-      if (!results.length) {
-        box.innerHTML = `<div class="p-3 text-slate-500 text-xs">Không tìm thấy kết quả phù hợp.</div>`;
-      } else {
-        box.innerHTML = results
-          .slice(0, 8)
-          .map(
-            (r) =>
-              `<button onclick="switchTab('${r.tab}'); document.getElementById('searchResultsBox').classList.add('hidden');" class="w-full text-left px-3 py-2 rounded-xl hover:bg-amber-50 text-slate-800 font-medium">${escapeHtml(r.label)}</button>`
-          )
-          .join("");
-      }
-      box.classList.remove("hidden");
-    }
-
-    // Tiểu Hoa Sen: lời chúc & âm thanh nhẹ
-    function renderLotusWish() {
-      document.getElementById("lotusGreetingText").textContent = LOTUS_WISHES[lotusWishIndex % LOTUS_WISHES.length];
-    }
-
-    function nextLotusWish() {
-      lotusWishIndex = (lotusWishIndex + 1) % LOTUS_WISHES.length;
-      renderLotusWish();
-      playGentleChime();
-    }
-
-    function copyLotusWish() {
-      const txt = document.getElementById("lotusGreetingText").textContent;
-      navigator.clipboard?.writeText(txt);
-      showToast("Đã sao chép lời chúc từ Tiểu Hoa Sen!");
-    }
-
-    function handleLotusMascotClick() {
-      const box = document.getElementById("lotusBubbleBox");
-      box.classList.remove("hidden");
-      nextLotusWish();
-    }
-
-    function toggleLotusDock() {
-      const box = document.getElementById("lotusBubbleBox");
-      const btns = document.getElementById("lotusActionButtons");
-      const isHidden = btns.classList.toggle("hidden");
-      if (isHidden) box.classList.add("hidden");
-      else box.classList.remove("hidden");
-    }
-
-    function toggleLotusSound() {
-      lotusSoundEnabled = !lotusSoundEnabled;
-      document.getElementById("lotusSoundLabel").textContent = lotusSoundEnabled ? "Âm thanh: bật" : "Âm thanh: tắt";
-      if (lotusSoundEnabled) playGentleChime();
-    }
-
-    function playGentleChime() {
-      if (!lotusSoundEnabled) return;
-      try {
-        const AudioCtx = window.AudioContext || window.webkitAudioContext;
-        const ctx = new AudioCtx();
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-        osc.type = "sine";
-        osc.frequency.setValueAtTime(528, ctx.currentTime);
-        gain.gain.setValueAtTime(0.04, ctx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.35);
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-        osc.start();
-        osc.stop(ctx.currentTime + 0.36);
-      } catch (e) {}
-    }
-
-    // Trợ lý Tiểu Hoa Sen theo khung LỆNH.docx
-    function openLotusAssistantModal() {
-      document.getElementById("lotusAssistantModal").classList.remove("hidden");
-    }
-
-    function closeLotusAssistantModal() {
-      document.getElementById("lotusAssistantModal").classList.add("hidden");
-    }
-
-    function setQuickCommand(cmd) {
-      const inp = document.getElementById("commandPromptInput");
-      if (!inp.value.trim()) {
-        inp.value = cmd;
-      } else {
-        inp.value = cmd + " " + inp.value.trim();
-      }
-      inp.focus();
-    }
-
-    async function handleLessonFileUpload(event) {
-      const file = event.target.files[0];
-      event.target.value = "";
-      if (!file) return;
-      document.getElementById("lessonSourceInfo").textContent = `Đang đọc tệp: ${file.name}...`;
-      try {
-        if (file.name.toLowerCase().endsWith(".pdf") && window.pdfjsLib) {
-          const buf = await file.arrayBuffer();
-          const pdf = await pdfjsLib.getDocument({ data: buf }).promise;
-          let fullText = "";
-          for (let i = 1; i <= pdf.numPages; i++) {
-            const page = await pdf.getPage(i);
-            const content = await page.getTextContent();
-            const pageStr = content.items.map((it) => it.str).join(" ");
-            fullText += `\n[Trang ${i}] ${pageStr}`;
-          }
-          document.getElementById("lessonContentInput").value = fullText.trim();
-          document.getElementById("lessonSourceInfo").textContent = `Đã nạp PDF: ${file.name} (${pdf.numPages} trang).`;
-        } else {
-          const text = await file.text();
-          document.getElementById("lessonContentInput").value = text;
-          document.getElementById("lessonSourceInfo").textContent = `Đã nạp tệp: ${file.name}.`;
-        }
-      } catch (err) {
-        document.getElementById("lessonSourceInfo").textContent = `Không đọc được toàn bộ nội dung ${file.name}, vui lòng dán văn bản trực tiếp.`;
-      }
-    }
-
-    function runLotusCommand() {
-      const sourceText = (document.getElementById("lessonContentInput").value || "").trim();
-      const rawCmd = (document.getElementById("commandPromptInput").value || "SOẠN BÀI").trim();
-      const upperCmd = rawCmd.toUpperCase();
-
-      const lines = sourceText
-        ? sourceText
-            .split(/\r?\n/)
-            .map((l) => l.trim())
-            .filter(Boolean)
-        : [];
-
-      const refDocsText = appData.shareDocs
-        .map((d) => `- [${d.category || "Văn bản"}] ${d.title}: ${d.summary || ""}`)
-        .join("\n");
-
-      let output = "";
-
-      if (upperCmd.startsWith("GIẢI ĐỀ")) {
-        output =
-          `[PHẦN 1: DÀN Ý & NỘI DUNG LÝ LUẬN CỐT LÕI]\n` +
-          `- Yêu cầu câu lệnh/đề bài: ${rawCmd}\n` +
-          `- Vận dụng phương pháp luận duy vật biện chứng, duy vật lịch sử và Tư tưởng Hồ Chí Minh; bám sát tài liệu đã cung cấp.\n` +
-          (lines.length
-            ? `- Luận cứ trích xuất từ tài liệu cung cấp:\n${lines.slice(0, 8).map((l) => `  • ${l}`).join("\n")}\n`
-            : `- Tài liệu không đề cập chi tiết câu hỏi riêng lẻ ngoài nội dung đã nạp.\n`) +
-          `\n[THÔNG TIN BÊN NGOÀI]\n` +
-          `[PHẦN 2: GỢI Ý LIÊN HỆ THỰC TIỄN]\n` +
-          `- Đặc điểm tình hình: Vùng ĐBSCL, TP. Cần Thơ, An Giang, Vĩnh Long, Cà Mau có đặc thù sông nước, kinh tế nông nghiệp - dịch vụ đan xen và yêu cầu cao về chuyển đổi số, cải cách hành chính ở cơ sở.\n` +
-          `- Thành tựu nổi bật: Công tác xây dựng Đảng, hệ thống chính trị cơ sở và phát triển kinh tế - xã hội có nhiều chuyển biến tích cực.\n` +
-          `- Hạn chế và nguyên nhân: Một số khâu triển khai nghị quyết ở cơ sở còn chậm; chất lượng tham mưu ở một vài lĩnh vực chuyên sâu cần nâng cao hơn.\n` +
-          `- Giải pháp gắn với chức trách cán bộ cấp xã: Tham mưu cụ thể hóa nghị quyết sát thực tiễn địa bàn cấp xã, nâng cao kỷ cương hành chính và hiệu quả phục vụ người dân.\n` +
-          `\nLưu ý đối chiếu quy định hiện hành về sắp xếp đơn vị hành chính, mô hình tổ chức bộ máy nếu văn bản cũ có thay đổi.\n` +
-          (refDocsText ? `\nTài liệu tham khảo trong mục Chia sẻ:\n${refDocsText}` : "");
-      } else if (upperCmd.startsWith("CHẤM BÀI")) {
-        output =
-          `ĐÁNH GIÁ BÀI LÀM / NỘI DUNG THEO 3 TIÊU CHÍ:\n` +
-          `- Chuẩn xác về lý luận: Đối chiếu khái niệm, nguyên lý và luận cứ với nội dung tài liệu đã nạp.\n` +
-          `- Logic và tính Đảng: Lập luận cần bám sát phương pháp luận duy vật biện chứng, duy vật lịch sử và quan điểm chính thống của Đảng.\n` +
-          `- Thực tiễn và khả thi: Cần gắn rõ đặc điểm cấp xã và vùng ĐBSCL, tránh nhận định chung chung.\n` +
-          `\nNội dung đã tiếp nhận:\n${rawCmd}\n${sourceText ? lines.slice(0, 6).join("\n") : "Chưa có đoạn bài làm chi tiết."}\n` +
-          `\nLưu ý: Vui lòng đối chiếu quy định, nghị quyết và mô hình tổ chức bộ máy hiện hành khi hoàn thiện bài viết.`;
-      } else if (upperCmd.startsWith("ÔN TẬP")) {
-        output =
-          `CÂU HỎI ÔN TẬP VẤN ĐÁP (HỎI TỪNG CÂU THEO QUY TRÌNH):\n` +
-          `Câu 1: Theo nội dung bạn vừa cung cấp ("${rawCmd}"), đâu là luận điểm cốt lõi nhất và bản chất lý luận của vấn đề này?\n` +
-          (lines.length ? `Gợi ý đối chiếu từ tài liệu: ${lines[0]}\n` : "") +
-          `Bạn hãy trả lời Câu 1 để Tiểu Hoa Sen nhận xét và chuyển sang câu kế tiếp.`;
-      } else {
-        // SOẠN BÀI hoặc TÓM TẮT BÀI ...
-        const extractedBullets = lines.length
-          ? lines.map((l) => `- ${l}`).join("\n")
-          : "- Tài liệu không đề cập nội dung chi tiết. Vui lòng dán nội dung bài học hoặc tải tệp PDF vào ô 1.";
-
-        output =
-          `PHẦN 1. NHỮNG KIẾN THỨC CỐT LÕI\n` +
-          `- Yêu cầu xử lý: ${rawCmd}\n` +
-          (lines.length
-            ? lines.slice(0, 4).map((l) => `- Sợi chỉ đỏ: ${l}`).join("\n")
-            : `- Tài liệu không đề cập nội dung cụ thể; cần cung cấp bài học để tóm lược luận điểm trọng tâm.`) +
-          `\n\nPHẦN 2. BÀI HỌC CHUYÊN SÂU\n` +
-          `### ${escapePlain(rawCmd)}\n` +
-          `Nội dung cốt lõi:\n` +
-          `${extractedBullets}\n` +
-          `\nPHẦN 3. HỆ THỐNG HÓA VÀ GHI NHỚ\n` +
-          `Tổng kết trọng tâm:\n` +
-          `- Nắm chắc bản chất lý luận, đối tượng và phương pháp tiếp cận theo tài liệu đã nạp.\n` +
-          `- Đối chiếu quy định, nghị quyết và cơ cấu tổ chức bộ máy hiện hành khi áp dụng thực tiễn.\n` +
-          `TỪ KHÓA QUAN TRỌNG:\n` +
-          `- Phương pháp luận: Cơ sở lý luận và nguyên tắc chỉ đạo nhận thức cũng như thực tiễn.\n` +
-          `- Vận dụng thực tiễn: Đưa nội dung lý luận vào giải quyết nhiệm vụ chính trị, lãnh đạo và quản lý sát thực tế.` +
-          (refDocsText ? `\n\nVăn bản tham khảo đã lưu trong mục Chia sẻ:\n${refDocsText}` : "");
-      }
-
-      lastLotusOutputText = output;
-      document.getElementById("lotusOutputArea").textContent = output;
-      playGentleChime();
-    }
-
-    function copyLotusOutput() {
-      const text = document.getElementById("lotusOutputArea").textContent || "";
-      navigator.clipboard?.writeText(text);
-      showToast("Đã sao chép kết quả của Tiểu Hoa Sen!");
-    }
-
-    // Xuất tệp Word (.docx) tương thích Microsoft Word và LibreOffice Writer
-    function exportLotusResultToDocx() {
-      const text = document.getElementById("lotusOutputArea").textContent || lastLotusOutputText || "";
-      if (!text.trim()) {
-        showToast("Chưa có nội dung để xuất file Word.");
-        return;
-      }
-      const paragraphs = text
-        .split(/\r?\n/)
-        .map((line) => `<p style="font-family:'Times New Roman',serif;font-size:13pt;line-height:1.5;margin:0 0 6pt 0;">${escapeHtml(line || " ")}</p>`)
-        .join("");
-
-      const wordHtml =
-        `<html xmlns:o="urn:schemas-microsoft-com:office:office" ` +
-        `xmlns:w="urn:schemas-microsoft-com:office:word" ` +
-        `xmlns="http://www.w3.org/TR/REC-html40">` +
-        `<head><meta charset="utf-8"><title>Tieu_Hoa_Sen_K20A11</title></head>` +
-        `<body>${paragraphs}</body></html>`;
-
-      const blob = new Blob(["\ufeff", wordHtml], {
-        type: "application/msword;charset=utf-8"
-      });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = `Tieu_Hoa_Sen_K20A11_${new Date().toISOString().slice(0, 10)}.doc`;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-      showToast("Đã xuất tệp Word (.doc) thành công!");
-    }
-
-    // Xuất tệp HTML mới nhất kèm toàn bộ dữ liệu hiện tại
-    function downloadUpdatedHtml() {
-      const cloneDoc = document.documentElement.cloneNode(true);
-      const serializedData = JSON.stringify(appData).replace(/</g, "\\u003c");
-      const injectScript = cloneDoc.createElement("script");
-      injectScript.textContent = `window.__PRELOADED_K20A11_DATA__ = ${serializedData};`;
-      cloneDoc.querySelector("head")?.appendChild(injectScript);
-
-      const htmlString = "<!DOCTYPE html>\n" + cloneDoc.outerHTML;
-      const blob = new Blob([htmlString], { type: "text/html;charset=utf-8" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "index.html";
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-      showToast("Đã tải tệp index.html mới nhất kèm dữ liệu cập nhật!");
-    }
-
-    function escapeHtml(str) {
-      return String(str || "")
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#39;");
-    }
-
-    function escapePlain(str) {
-      return String(str || "").replace(/\s+/g, " ").trim();
-    }
-
-    document.addEventListener("click", (e) => {
-      const searchBox = document.getElementById("searchResultsBox");
-      const searchInp = document.getElementById("globalSearchInput");
-      if (searchBox && !searchBox.contains(e.target) && e.target !== searchInp) {
-        searchBox.classList.add("hidden");
-      }
+    const resp = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${encodeURIComponent(apiKey)}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        systemInstruction: { parts: [{ text: systemInstruction }] },
+        contents: [...historyContents, { role: 'user', parts }]
+      })
     });
 
-    (async function initPortal() {
-      renderLotusWish();
-      if (window.__PRELOADED_K20A11_DATA__) {
-        appData = mergeWithDefaults(window.__PRELOADED_K20A11_DATA__);
-        saveLocalBackup(appData);
+    const data = await resp.json();
+    if (!resp.ok) throw new Error(data?.error?.message || ('HTTP ' + resp.status));
+
+    const replyText = data?.candidates?.[0]?.content?.parts?.map(p => p.text || '').join('').trim() || 'Không nhận được nội dung phản hồi.';
+    state.aiMessages.push({ role: 'bot', text: replyText });
+    lastAiMarkdown = replyText;
+    aiAttachments = [];
+    renderAiAttachments();
+    saveState(true);
+  } catch (err) {
+    const errMsg = 'Có lỗi khi gọi Gemini API: ' + err.message;
+    state.aiMessages.push({ role: 'bot', text: errMsg });
+    lastAiMarkdown = errMsg;
+    saveState(true);
+  } finally {
+    sendBtn.disabled = false;
+    sendBtn.innerHTML = `<i data-lucide="send" size="15"></i>Gửi`;
+    if (window.lucide) lucide.createIcons();
+    renderAiMessages();
+  }
+});
+
+/* Export .docx helper (WordprocessingML valid zip) */
+function crc32(buf) {
+  let c = -1;
+  for (let i = 0; i < buf.length; i++) {
+    c = (c >>> 8) ^ CRC_TABLE[(c ^ buf[i]) & 0xff];
+  }
+  return (c ^ -1) >>> 0;
+}
+const CRC_TABLE = (() => {
+  const t = new Uint32Array(256);
+  for (let i = 0; i < 256; i++) {
+    let c = i;
+    for (let k = 0; k < 8; k++) c = (c & 1) ? (0xedb88320 ^ (c >>> 1)) : (c >>> 1);
+    t[i] = c >>> 0;
+  }
+  return t;
+})();
+
+function buildZip(files) {
+  const enc = new TextEncoder();
+  const localChunks = [];
+  const centralChunks = [];
+  let offset = 0;
+
+  for (const f of files) {
+    const nameBytes = enc.encode(f.name);
+    const dataBytes = enc.encode(f.content);
+    const crc = crc32(dataBytes);
+
+    const localHeader = new Uint8Array(30 + nameBytes.length);
+    const lv = new DataView(localHeader.buffer);
+    lv.setUint32(0, 0x04034b50, true);
+    lv.setUint16(4, 20, true);
+    lv.setUint16(8, 0, true);
+    lv.setUint32(14, crc, true);
+    lv.setUint32(18, dataBytes.length, true);
+    lv.setUint32(22, dataBytes.length, true);
+    lv.setUint16(26, nameBytes.length, true);
+    localHeader.set(nameBytes, 30);
+
+    localChunks.push(localHeader, dataBytes);
+
+    const centralHeader = new Uint8Array(46 + nameBytes.length);
+    const cv = new DataView(centralHeader.buffer);
+    cv.setUint32(0, 0x02014b50, true);
+    cv.setUint16(4, 20, true);
+    cv.setUint16(6, 20, true);
+    cv.setUint32(16, crc, true);
+    cv.setUint32(20, dataBytes.length, true);
+    cv.setUint32(24, dataBytes.length, true);
+    cv.setUint16(28, nameBytes.length, true);
+    cv.setUint32(42, offset, true);
+    centralHeader.set(nameBytes, 46);
+
+    centralChunks.push(centralHeader);
+    offset += localHeader.length + dataBytes.length;
+  }
+
+  const centralSize = centralChunks.reduce((s, a) => s + a.length, 0);
+  const eocd = new Uint8Array(22);
+  const ev = new DataView(eocd.buffer);
+  ev.setUint32(0, 0x06054b50, true);
+  ev.setUint16(8, files.length, true);
+  ev.setUint16(10, files.length, true);
+  ev.setUint32(12, centralSize, true);
+  ev.setUint32(16, offset, true);
+
+  return new Blob([...localChunks, ...centralChunks, eocd], {
+    type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+  });
+}
+
+function downloadDocx(title, bodyText) {
+  const xmlEscape = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  const paras = [
+    `<w:p><w:r><w:rPr><w:b/><w:sz w:val="32"/></w:rPr><w:t>${xmlEscape(title)}</w:t></w:r></w:p>`,
+    ...String(bodyText).split('\n').map(line =>
+      `<w:p><w:r><w:rPr><w:sz w:val="26"/></w:rPr><w:t xml:space="preserve">${xmlEscape(line)}</w:t></w:r></w:p>`
+    )
+  ].join('');
+
+  const documentXml = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+  <w:body>${paras}</w:body>
+</w:document>`;
+
+  const contentTypesXml = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">
+  <Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>
+  <Default Extension="xml" ContentType="application/xml"/>
+  <Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/>
+</Types>`;
+
+  const relsXml = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+  <Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/>
+</Relationships>`;
+
+  const blob = buildZip([
+    { name: '[Content_Types].xml', content: contentTypesXml },
+    { name: '_rels/.rels', content: relsXml },
+    { name: 'word/document.xml', content: documentXml }
+  ]);
+
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = (title || 'K20A11_Tai_lieu').replace(/[^\w\u00C0-\u1EF9-]+/g, '_') + '.docx';
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+function exportDocRecordToDocx(id) {
+  const d = state.docs.find(x => x.id === id);
+  if (!d) return;
+  downloadDocx(d.title, (d.summary ? d.summary + '\n\n' : '') + (d.contentText || ''));
+  showToast('Đã xuất tệp .docx');
+}
+
+document.getElementById('exportLastAiDocxBtn').addEventListener('click', () => {
+  const lastBot = lastAiMarkdown || [...state.aiMessages].reverse().find(m => m.role === 'bot')?.text || '';
+  if (!lastBot) { showToast('Chưa có phản hồi nào để xuất.'); return; }
+  downloadDocx('Tieu_Hoa_Sen_K20A11', lastBot);
+  showToast('Đã xuất phản hồi ra tệp .docx');
+});
+
+/* CSV & JSON Sync actions */
+document.getElementById('exportMembersCsvBtn').addEventListener('click', () => {
+  const headers = ['STT', 'Họ và tên', 'Nhóm', 'Chức vụ', 'Đơn vị công tác', 'Số điện thoại', 'Email'];
+  const rows = state.members.map((m, i) => [i + 1, m.name, m.roleType, m.position, m.unit, m.phone, m.email]);
+  const csv = '\uFEFF' + [headers, ...rows].map(r => r.map(v => `"${String(v || '').replace(/"/g, '""')}"`).join(',')).join('\n');
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'Danh_sach_lop_K20A11.csv';
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+  showToast('Đã xuất danh sách lớp (.csv)');
+});
+
+document.getElementById('saveFirebaseUrlBtn').addEventListener('click', () => {
+  state.meta.firebaseUrl = document.getElementById('firebaseUrlInput').value.trim() || DEFAULT_FIREBASE_URL;
+  document.getElementById('firebaseUrlInput').value = state.meta.firebaseUrl;
+  saveState(true);
+  showToast('Đã lưu đường dẫn Firebase.');
+});
+
+document.getElementById('syncPushBtn').addEventListener('click', () => syncPushFirebase(false));
+document.getElementById('syncPullBtn').addEventListener('click', () => syncPullFirebase(false));
+
+document.getElementById('exportJsonBtn').addEventListener('click', () => {
+  const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `K20A11_Backup_${new Date().toISOString().slice(0, 10)}.json`;
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+  showToast('Đã xuất tệp sao lưu JSON.');
+});
+
+document.getElementById('importJsonInput').addEventListener('change', async (e) => {
+  const file = e.target.files?.[0];
+  if (!file) return;
+  try {
+    const text = await file.text();
+    const parsed = JSON.parse(text);
+    const base = getInitialData();
+    state = {
+      ...base,
+      ...parsed,
+      meta: {
+        ...base.meta,
+        ...(parsed.meta || {}),
+        firebaseUrl: DEFAULT_FIREBASE_URL
       }
-      if (!appData.adminPassHash) {
-        appData.adminPassHash = await sha256Hex(DEFAULT_PASS_PLAIN);
-      }
-      renderAll();
-      await syncFromFirebase(false);
-    })();
-  </script>
+    };
+    saveState();
+    showToast('Đã nhập bản sao lưu thành công.');
+  } catch (err) {
+    showToast('Tệp JSON không hợp lệ.');
+  }
+  e.target.value = '';
+});
+
+document.getElementById('resetDemoBtn').addEventListener('click', () => {
+  if (!confirm('Khôi phục toàn bộ dữ liệu mẫu ban đầu của lớp K20A11?')) return;
+  state = getInitialData();
+  saveState();
+  showToast('Đã khôi phục dữ liệu mẫu.');
+});
+
+/* Event listeners */
+document.getElementById('addMemberBtn').addEventListener('click', () => openMemberModal());
+document.getElementById('memberSearch').addEventListener('input', renderMembers);
+document.getElementById('memberRoleFilter').addEventListener('change', renderMembers);
+document.getElementById('viewCardsBtn').addEventListener('click', () => {
+  memberViewMode = 'cards';
+  document.getElementById('viewCardsBtn').classList.add('active');
+  document.getElementById('viewTableBtn').classList.remove('active');
+  renderMembers();
+});
+document.getElementById('viewTableBtn').addEventListener('click', () => {
+  memberViewMode = 'table';
+  document.getElementById('viewTableBtn').classList.add('active');
+  document.getElementById('viewCardsBtn').classList.remove('active');
+  renderMembers();
+});
+
+document.getElementById('addScheduleBtn').addEventListener('click', () => openScheduleModal());
+document.getElementById('scheduleSearch').addEventListener('input', renderSchedule);
+document.getElementById('scheduleStatusFilter').addEventListener('change', renderSchedule);
+
+document.getElementById('addExamBtn').addEventListener('click', () => openExamModal());
+document.getElementById('addNoticeBtn').addEventListener('click', () => openNoticeModal());
+document.querySelectorAll('#noticeCategoryChips .chip').forEach(ch => {
+  ch.addEventListener('click', () => {
+    document.querySelectorAll('#noticeCategoryChips .chip').forEach(x => x.classList.remove('active'));
+    ch.classList.add('active');
+    activeNoticeCat = ch.dataset.cat;
+    renderNotices();
+  });
+});
+
+document.getElementById('addDocBtn').addEventListener('click', () => openDocModal());
+document.getElementById('docSearch').addEventListener('input', renderDocs);
+document.getElementById('addPhotoBtn').addEventListener('click', () => openPhotoModal());
+
+function renderAll() {
+  renderHome();
+  renderMembers();
+  renderSchedule();
+  renderExams();
+  renderNotices();
+  renderDocs();
+  renderGallery();
+  renderAiMessages();
+  const fbInput = document.getElementById('firebaseUrlInput');
+  if (fbInput && !fbInput.value) fbInput.value = DEFAULT_FIREBASE_URL;
+  if (window.lucide) lucide.createIcons();
+}
+
+/* Init */
+document.getElementById('firebaseUrlInput').value = DEFAULT_FIREBASE_URL;
+document.getElementById('aiApiKeyInput').value = localStorage.getItem(API_KEY_STORAGE) || '';
+renderAll();
+syncPullFirebase(true);
+</script>
 </body>
 </html>
